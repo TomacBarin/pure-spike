@@ -1,121 +1,165 @@
 # Coding Conventions – Pure Spike Studio
 
-This document defines the coding standards and patterns we follow in the Pure Spike Studio project. The goal is to keep the codebase consistent, readable, and maintainable.
-
-These conventions are based on the React + TypeScript course material and adapted to this project.
+This document defines the coding standards and patterns for the Pure Spike Studio project.
 
 ## 1. General Principles
 
-- Prefer **clarity and readability** over clever or overly compact code.
-- Write code that is easy to understand for future you (and for AI assistants).
-- Keep components focused and small.
-- Minimize state when possible. Only put data in state if it changes over time **and** affects what is rendered.
-- Follow the patterns taught in the course (especially regarding state, hooks, and component structure).
+- Clarity, readability and maintainability first.
+- Prefer explicit modeling of state (especially discriminated unions).
+- Separate concerns clearly: Core logic, Adapters, UI.
+- Write code that is easy to test, refactor and reason about.
 
-## 2. Project Structure & File Naming
+## 2. Project Structure & Naming
 
-- Use **PascalCase** for component files and folders (e.g. `SpikeGenerator.tsx`, `PresetCard.tsx`).
-- Use **camelCase** for utility files and hooks (e.g. `useSpikeGenerator.ts`, `formatImpulse.ts`).
-- Keep related files close together (e.g. a component + its custom hook in the same folder when it makes sense).
-- Use descriptive folder names: `components/`, `hooks/`, `utils/`, `types/`, `pages/`, etc.
+- Components: PascalCase (`SpikeGenerator.tsx`, `PresetCard.tsx`)
+- Custom hooks: `use` + camelCase (`useSpikeSettings.ts`, `usePresets.ts`)
+- API layer: `src/api/`
+- Types: `src/types/` or co-located
+- Layouts: `src/layouts/`
+- Pages/Screens: `src/pages/`
 
-## 3. React Components
+## 3. React Components (Web & React Native)
 
-- Always use **functional components** with hooks.
-- Component names must start with a capital letter.
-- Keep components focused on **one responsibility**.
-- Prefer composition over deep prop drilling.
-- Use **lifting state up** when multiple components need to share the same data.
+- Always use functional components + hooks.
+- Keep components focused.
+- In React Native: Use `View` + `Text` hierarchy. Never put text directly in `View`.
 
-### Example of a clean component
+### Core Components (React Native)
 
-```tsx
-// Good
-function SpikeControls() {
-  const [duration, setDuration] = useState(1000);
+- Container: `View`, `SafeAreaView`
+- Text: `Text`
+- Touch: `Pressable` (preferred over `Touchable*`)
+- Input: `TextInput` (controlled with `onChangeText`)
+- Lists: `FlatList` (preferred for long lists), `ScrollView` (for small content)
+- Use `ListHeaderComponent` instead of wrapping `FlatList` in `ScrollView`
 
-  return (
-    <div>
-      <input
-        type="number"
-        value={duration}
-        onChange={(e) => setDuration(Number(e.target.value))}
-      />
-    </div>
-  );
-}
+## 4. Styling
+
+**Web**
+
+- Primary approach: **CSS Modules** (`.module.css`)
+- Use design tokens (CSS variables or TypeScript objects) for spacing, colors, radius, etc.
+- Keep styles co-located with the component
+
+**React Native**
+
+- Use `StyleSheet.create` as the standard
+- Use design tokens
+
+**Design tokens example (TypeScript)**
+
+```ts
+export const tokens = {
+  spacing: { xs: 4, sm: 8, md: 16, lg: 24, xl: 32 },
+  radius: { sm: 6, md: 10, lg: 16 },
+  fontSize: { sm: 14, md: 16, lg: 20, xl: 24 },
+} as const;
 ```
 
-## 4. State Management
+## 5. State Management
 
-### useState
+- Simple local state → `useState`
+- Complex / interrelated state → `useReducer` + discriminated unions
+- Shared/global state → Context + custom hooks (`useTheme()`, `usePresets()` etc.)
 
-- Use `useState` for **simple, independent** pieces of state.
-- Follow the naming convention: `value` + `setValue`.
+**Strongly recommended pattern for async data:**
 
-```tsx
-const [isPlaying, setIsPlaying] = useState(false);
-const [spikeName, setSpikeName] = useState("");
+```ts
+export type LoadState<T> =
+  | { status: "idle" | "loading"; data: null; error: null }
+  | { status: "success"; data: T; error: null }
+  | { status: "error"; data: null; error: string };
 ```
 
-- Prefer multiple small `useState` calls over one large object **unless** the values are frequently updated together.
+## 6. Routing & Navigation
 
-### useReducer (when state gets complex)
+- **Web**: React Router (`BrowserRouter`, nested routes, `<Outlet />`, `useParams`, `generatePath`, `NavLink`)
+- **React Native**: React Navigation (stack navigation as base)
 
-Use `useReducer` when:
+Always handle missing route params safely in TypeScript.
 
-- State has multiple related fields (e.g. form with values, errors, touched, status).
-- There are many different ways the state can change.
-- The update logic is complex or has many edge cases.
+## 7. Data Fetching & API Layer
 
-Example pattern from the course (form with validation):
+Create a robust, typed API layer.
 
-```tsx
-const [state, dispatch] = useReducer(formReducer, initialState);
+**Recommended pattern:**
 
-// Actions like:
-dispatch({ type: "change_field", payload: { name, value } });
-dispatch({ type: "blur_field", payload: fieldName });
+- `fetchJson<T>` wrapper with proper `HttpError` handling
+- Or a configured Axios instance with interceptors
+- Always have a `getErrorMessage(err: unknown)` helper
+- Use `cancelled` flag or `AbortController` in `useEffect`
+
+## 8. Architecture: Core / Adapter / UI (Week 11)
+
+This is the most important long-term pattern.
+
+- **Core**: Platform-agnostic logic (types, validation, pure functions, reducers, API contracts)
+- **Adapter**: Platform-specific bridges (storage, config, navigation helpers)
+- **UI**: Platform-specific components and screens
+
+**Goal**: Maximize code sharing between web and mobile without forcing unnatural abstractions.
+
+### File-based platform splitting (recommended)
+
+- Use `.web.ts` / `.native.ts` suffixes for larger differences
+- Use `Platform.select` or `Platform.OS` for small styling/logic differences
+
+Example: Storage adapter
+
+```ts
+// shared/adapters/storage/storage.web.ts
+// shared/adapters/storage/storage.native.ts
+// shared/adapters/storage/index.ts → exports correct one automatically
 ```
 
-## 5. Hooks
+## 9. TypeScript Patterns
 
-### Rules of Hooks
+- Use discriminated unions for state machines
+- Type events properly (`React.ChangeEvent<HTMLInputElement>`, etc.)
+- Prefer clear prop types over `React.FC`
+- Use generics for reusable utilities
+- Narrow route params early
 
-- Only call hooks at the **top level** of your component (never inside loops, conditions, or nested functions).
+## 10. Forms
 
-### useEffect
+- Controlled components
+- Complex forms → `useReducer` + TypeScript
+- Show validation errors clearly
 
-- Use `useEffect` for side effects (data fetching, subscriptions, timers, syncing with localStorage, etc.).
-- Always include the correct dependency array.
-- Prefer multiple focused `useEffect` hooks over one big one.
+## 11. Testing (Jest + React Testing Library)
 
-### useRef
+- Test **behavior**, not implementation
+- Use `userEvent` + `getByRole` with accessible names
+- Use `findBy...` / `waitFor` for async UI
+- Structure tests as Arrange → Act → Assert
+- Prioritize critical user flows
 
-- Use `useRef` for:
-  - Accessing DOM elements (focus, measurements, etc.)
-  - Storing mutable values that should **not** trigger re-renders
+## 12. Naming Conventions
 
-### useMemo & useCallback
+| Type                 | Convention        | Example                       |
+| -------------------- | ----------------- | ----------------------------- |
+| Component            | PascalCase        | `PresetCard`                  |
+| Custom Hook          | `use` + camelCase | `usePresets`                  |
+| API functions        | camelCase         | `getPresets`, `generateSpike` |
+| Types                | PascalCase        | `Spike`, `Preset`             |
+| State variables      | camelCase         | `spikeDuration`               |
+| Constants            | UPPER_SNAKE_CASE  | `MAX_DURATION_MS`             |
+| Reducer action types | "domain/action"   | `"tasks/loaded"`              |
 
-- Use `useMemo` and `useCallback` **only when needed** for performance (expensive calculations or when passing callbacks to optimized child components).
-- Do not overuse them — they add complexity.
+## 13. Do's and Don'ts
 
-## 6. Forms & Controlled Components
+**Do:**
 
-- Prefer **controlled components** (state drives the input value).
-- When building forms with validation, loading states, and touched fields → strongly consider `useReducer`.
+- Model state explicitly with discriminated unions
+- Stabilize Context values with `useMemo`
+- Separate Core logic from platform-specific code
+- Use `StyleSheet.create` in React Native
+- Write tests that describe user behavior
 
-## 7. Naming Conventions
+**Don't:**
 
-| Type                 | Convention              | Example                         |
-| -------------------- | ----------------------- | ------------------------------- |
-| Component            | PascalCase              | `SpikeGenerator`                |
-| Hook                 | camelCase + use prefix  | `useSpikeSettings`              |
-| State variable       | camelCase               | `spikeDuration`                 |
-| State setter         | `set` + camelCase       | `setSpikeDuration`              |
-| Reducer action types | snake_case or camelCase | `"change_field"`, `submitStart` |
-| Utility functions    | camelCase               | `generateImpulse()`             |
-| Constants            | UPPER_SNAKE_CASE        | `MAX_DURATION`                  |
-
----
+- Put text directly inside `View` in React Native
+- Create new object references in Context Provider on every render
+- Forget cleanup in data-fetching effects
+- Nest `FlatList` inside `ScrollView` without a good reason
+- Test internal implementation details

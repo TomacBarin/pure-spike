@@ -16,12 +16,6 @@ These guidelines are living documents. We will update them as the project evolve
 
 ---
 
-**Här kommer ett första utkast på Accessibility-sektionen.**
-
-Jag har hållit den **praktisk och projektanpassad** för Pure Spike Studio. Den är skriven på engelska (som vi bestämde), och fokuserar på det som faktiskt är relevant när vi bygger med React + TypeScript + CSS Modules.
-
----
-
 ## 2. Accessibility (WCAG)
 
 ### Goal

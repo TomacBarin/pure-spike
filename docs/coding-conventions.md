@@ -18,13 +18,15 @@ This document defines the coding standards and patterns for the Pure Spike Studi
 - Layouts: `src/layouts/`
 - Pages/Screens: `src/pages/`
 
-## 3. React Components (Web & React Native)
+## 3. Frontend Conventions
+
+### 3.1 React Components (Web & React Native)
 
 - Always use functional components + hooks.
 - Keep components focused.
 - In React Native: Use `View` + `Text` hierarchy. Never put text directly in `View`.
 
-### Core Components (React Native)
+#### Core Components (React Native)
 
 - Container: `View`, `SafeAreaView`
 - Text: `Text`
@@ -33,7 +35,7 @@ This document defines the coding standards and patterns for the Pure Spike Studi
 - Lists: `FlatList` (preferred for long lists), `ScrollView` (for small content)
 - Use `ListHeaderComponent` instead of wrapping `FlatList` in `ScrollView`
 
-## 4. Styling
+### 3.2 Styling
 
 **Web**
 
@@ -56,7 +58,7 @@ export const tokens = {
 } as const;
 ```
 
-## 5. State Management
+### 3.3 State Management
 
 - Simple local state → `useState`
 - Complex / interrelated state → `useReducer` + discriminated unions
@@ -71,14 +73,13 @@ export type LoadState<T> =
   | { status: "error"; data: null; error: string };
 ```
 
-## 6. Routing & Navigation
+### 3.4 Routing & Navigation
 
 - **Web**: React Router (`BrowserRouter`, nested routes, `<Outlet />`, `useParams`, `generatePath`, `NavLink`)
 - **React Native**: React Navigation (stack navigation as base)
+- Always handle missing route params safely in TypeScript.
 
-Always handle missing route params safely in TypeScript.
-
-## 7. Data Fetching & API Layer
+### 3.5 Data Fetching & API Layer (Frontend)
 
 Create a robust, typed API layer.
 
@@ -89,7 +90,35 @@ Create a robust, typed API layer.
 - Always have a `getErrorMessage(err: unknown)` helper
 - Use `cancelled` flag or `AbortController` in `useEffect`
 
-## 8. Architecture: Core / Adapter / UI (Week 11)
+### 3.6 Forms
+
+- Controlled components
+- Complex forms → `useReducer` + TypeScript
+- Show validation errors clearly
+
+### 3.7 Testing (Jest + React Testing Library)
+
+- Test **behavior**, not implementation
+- Use `userEvent` + `getByRole` with accessible names
+- Use `findBy...` / `waitFor` for async UI
+- Structure tests as Arrange → Act → Assert
+- Prioritize critical user flows
+
+## 4. Backend Conventions
+
+_(To be populated from backend study materials)_
+
+## 5. Shared Conventions
+
+### 5.1 TypeScript Patterns
+
+- Use discriminated unions for state machines
+- Type events properly (`React.ChangeEvent<HTMLInputElement>`, etc.)
+- Prefer clear prop types over `React.FC`
+- Use generics for reusable utilities
+- Narrow route params early
+
+### 5.2 Architecture: Core / Adapter / UI
 
 This is the most important long-term pattern.
 
@@ -99,7 +128,7 @@ This is the most important long-term pattern.
 
 **Goal**: Maximize code sharing between web and mobile without forcing unnatural abstractions.
 
-### File-based platform splitting (recommended)
+**File-based platform splitting (recommended)**
 
 - Use `.web.ts` / `.native.ts` suffixes for larger differences
 - Use `Platform.select` or `Platform.OS` for small styling/logic differences
@@ -112,29 +141,7 @@ Example: Storage adapter
 // shared/adapters/storage/index.ts → exports correct one automatically
 ```
 
-## 9. TypeScript Patterns
-
-- Use discriminated unions for state machines
-- Type events properly (`React.ChangeEvent<HTMLInputElement>`, etc.)
-- Prefer clear prop types over `React.FC`
-- Use generics for reusable utilities
-- Narrow route params early
-
-## 10. Forms
-
-- Controlled components
-- Complex forms → `useReducer` + TypeScript
-- Show validation errors clearly
-
-## 11. Testing (Jest + React Testing Library)
-
-- Test **behavior**, not implementation
-- Use `userEvent` + `getByRole` with accessible names
-- Use `findBy...` / `waitFor` for async UI
-- Structure tests as Arrange → Act → Assert
-- Prioritize critical user flows
-
-## 12. Naming Conventions
+### 5.3 Naming Conventions
 
 | Type                 | Convention        | Example                       |
 | -------------------- | ----------------- | ----------------------------- |
@@ -146,7 +153,11 @@ Example: Storage adapter
 | Constants            | UPPER_SNAKE_CASE  | `MAX_DURATION_MS`             |
 | Reducer action types | "domain/action"   | `"tasks/loaded"`              |
 
-## 13. Do's and Don'ts
+### 5.4 Error Handling & Validation
+
+_(Placeholder – will be expanded with backend material)_
+
+## 6. Do's and Don'ts
 
 **Do:**
 

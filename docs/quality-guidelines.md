@@ -283,6 +283,12 @@ We regularly check that we follow the guidelines in this document.
 
 ---
 
+## 7. Backend Quality & Security
+
+_(To be expanded when backend study materials are processed)_
+
+---
+
 ## Final Notes
 
 These guidelines are meant to help us build a high-quality product without slowing us down.  

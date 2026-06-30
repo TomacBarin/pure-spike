@@ -246,6 +246,7 @@ We care about both **actual performance** and **perceived performance**.
 - For audio-related features (waveform rendering, generation), be mindful of heavy computations on the main thread.
 - Use proper image optimization and responsive images (`srcset` + `sizes`) if we add any images later.
 - Show loading states quickly so the interface feels responsive even if work is happening in the background.
+- When implementing client-side audio generation (spikes/impulses), be mindful of heavy computations on the main thread. Consider using `OfflineAudioContext` for generation and optimize waveform rendering to avoid jank.
 
 ### Perceived Performance
 
@@ -285,74 +286,41 @@ We regularly check that we follow the guidelines in this document.
 
 ## 7. Backend Quality & Security
 
-### 7.1 Core Security Principles
+This section focuses on the **quality and security mindset** for the backend.  
+Detailed implementation patterns, code structure and technical conventions are defined in `coding-conventions.md` sections 4.2–4.10.
 
-- **Never trust the client**. All input must be validated and sanitized on the server, regardless of what the frontend does.
+### 7.1 Core Principles
+
+- **Never trust the client.** All input must be validated and sanitized on the server.
 - Validate **early** in the request lifecycle (before business logic runs).
 - Use a **defense-in-depth** approach: combine input validation, authentication, authorization, and proper error handling.
-- Be explicit about what is allowed rather than trying to block what is not allowed.
+- Prefer explicit allow-lists over trying to block everything that is not allowed.
+- Log enough for debugging, but never log sensitive data (passwords, tokens, personal information).
 
-### 7.2 Input Validation
+### 7.2 Key Quality Priorities
 
-- Use **Zod** as the primary validation library for all incoming data (`req.body`, `req.params`, `req.query`).
-- Keep validation schemas close to the routes they validate (or in a dedicated `types/` folder).
-- Always use `safeParse()` in controllers — never `parse()` (to avoid uncaught exceptions).
-- Return clear, structured validation errors to the client (field + message).
-- Strip unknown fields by default (Zod’s behavior) unless `.strict()` is explicitly needed.
+| Area             | Must have                                                  | Nice to have (future)                   |
+| ---------------- | ---------------------------------------------------------- | --------------------------------------- |
+| Input validation | Zod + `safeParse()` on all endpoints (body, params, query) | Stronger schema strictness              |
+| Error handling   | Centralized error middleware, consistent format            | Structured logging with correlation IDs |
+| Authentication   | JWT + bcrypt, protected routes                             | Refresh tokens, session management      |
+| Authorization    | Role-based access control (RBAC) when needed               | Fine-grained permissions                |
+| Data protection  | Data minimization, secure logging                          | GDPR tooling, audit logs                |
+| Configuration    | Validated environment variables at startup                 | Secrets management service              |
+| API security     | HTTPS, CORS, proper status codes, versioning               | Rate limiting, request signing          |
 
-### 7.3 Error Handling
+For the concrete technical implementation patterns regarding input validation and error handling, see `coding-conventions.md` sections 4.6–4.7 and 5.4.
 
-- Implement a **centralized error handling middleware** as the last middleware in the chain.
-- Never expose internal implementation details, stack traces, or database errors to clients in production.
-- Use consistent error response format across the entire API.
-- Log errors server-side with sufficient context for debugging, but never log sensitive data (passwords, tokens, personal information).
-- Distinguish between **operational errors** (expected, e.g. validation, not found) and **programming errors** (bugs).
+### 7.3 Testing & Documentation
 
-### 7.4 Authentication & Authorization
-
-- Use **bcrypt** for password hashing (never store plain text passwords).
-- Use **JWT** for stateless authentication.
-- Protect sensitive routes with authentication middleware.
-- Implement **role-based access control (RBAC)** when different user roles need different permissions.
-- Validate JWT tokens on every protected request.
-- Store JWT secrets and other sensitive configuration in environment variables — never in code or version control.
-
-### 7.5 Data Protection & Privacy (GDPR-aware development)
-
-- Apply **data minimization**: only collect and store data that is strictly necessary.
-- Be transparent about what data is collected and why (especially if the project grows to handle personal data).
-- Support the right to erasure ("right to be forgotten") — consider soft deletes or anonymization strategies.
-- Log only what is necessary. Avoid logging personal data or sensitive information.
-- When logging, prefer structured logging and exclude sensitive fields.
-
-### 7.6 Secure Configuration & Environment
-
-- Use `.env` files + `dotenv`, but **never commit** `.env` to Git.
-- Validate that all required environment variables exist when the application starts.
-- Use different configurations for development, testing, and production.
-- Keep secrets (database URI, JWT secret, API keys) out of source code and logs.
-
-### 7.7 API Security Best Practices
-
-- Use HTTPS in production.
-- Configure **CORS** properly — only allow trusted origins.
-- Consider rate limiting on public or sensitive endpoints to protect against abuse.
-- Return appropriate HTTP status codes (especially `401`, `403`, `404`, `422`).
-- Version the API from the start (`/api/v1/...`).
-
-### 7.8 Testing & Quality Assurance (Backend)
-
-- Write automated tests for critical paths (especially authentication, authorization, and data validation).
-- Test both **happy paths** and **error cases** (invalid input, unauthorized access, not found, etc.).
-- Use tools like **Supertest** + **Jest** for integration testing of routes.
-- Validate that error responses do not leak sensitive information.
-
-### 7.9 Documentation & Maintainability
-
-- Document the API using **Swagger/OpenAPI** (or similar) so it is self-documenting and testable.
+- Write automated tests for critical paths (authentication, authorization, validation, happy + error paths).
+- Use **Supertest + Jest** for integration testing of routes.
+- Document the API with **Swagger/OpenAPI** so it is self-documenting and testable.
 - Keep documentation up to date as the API evolves.
-- Write clear commit messages and maintain a clean Git history.
-- Use meaningful variable, function, and file names that communicate intent.
+
+### 7.4 Future: When Adding Authentication and Preset Persistence
+
+When user accounts and preset persistence are introduced, revisit and expand this section together with the corresponding parts in `coding-conventions.md`.
 
 ## Final Notes
 

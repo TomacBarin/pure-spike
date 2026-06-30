@@ -22,6 +22,8 @@ This document defines the coding standards and patterns for the Pure Spike Studi
 
 ### 3.1 React Components (Web & React Native)
 
+> **Note:** React Native conventions are included for potential future expansion or code sharing. For the current web-focused version of Pure Spike Studio, these can be ignored.
+
 - Always use functional components + hooks.
 - Keep components focused.
 - In React Native: Use `View` + `Text` hierarchy. Never put text directly in `View`.
@@ -44,6 +46,8 @@ This document defines the coding standards and patterns for the Pure Spike Studi
 - Keep styles co-located with the component
 
 **React Native**
+
+> _(React Native styling guidance is retained for future use. Current development focuses on web with CSS Modules.)_
 
 - Use `StyleSheet.create` as the standard
 - Use design tokens
@@ -75,6 +79,8 @@ export type LoadState<T> =
 
 ### 3.4 Routing & Navigation
 
+> **Note:** React Navigation guidance applies only if React Native support is added later.
+
 - **Web**: React Router (`BrowserRouter`, nested routes, `<Outlet />`, `useParams`, `generatePath`, `NavLink`)
 - **React Native**: React Navigation (stack navigation as base)
 - Always handle missing route params safely in TypeScript.
@@ -89,6 +95,7 @@ Create a robust, typed API layer.
 - Or a configured Axios instance with interceptors
 - Always have a `getErrorMessage(err: unknown)` helper
 - Use `cancelled` flag or `AbortController` in `useEffect`
+- For more complex applications involving caching, background refetching or optimistic updates, consider TanStack Query as a future enhancement. For Pure Spike Studio v1 the patterns above are sufficient.
 
 ### 3.6 Forms
 
@@ -254,7 +261,7 @@ This is the most important long-term pattern.
 
 ### 5.4 Error Handling & Validation
 
-See sections 4.6 and 4.7 for backend patterns. Frontend should also handle errors gracefully and show user-friendly messages.
+See `coding-conventions.md` sections 4.6–4.7 and `quality-guidelines.md` section 7 for backend patterns. Frontend should also handle errors gracefully and show user-friendly messages.
 
 ## 6. Do's and Don'ts
 

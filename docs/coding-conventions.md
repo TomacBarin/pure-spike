@@ -106,7 +106,114 @@ Create a robust, typed API layer.
 
 ## 4. Backend Conventions
 
-_(To be populated from backend study materials)_
+### 4.1 Project Structure
+
+```ts
+src/
+├── routes/           # Route definitions only
+├── controllers/      # Thin controllers (call services + return responses)
+├── services/         # Business logic (recommended)
+├── models/           # Mongoose models + schemas
+├── middleware/       # validation, auth, errorHandler, logger
+├── types/            # Zod schemas, DTOs, interfaces
+├── utils/            # Helpers (e.g. getErrorMessage, asyncHandler)
+├── config/           # Environment validation
+├── app.ts
+└── server.ts
+```
+
+### 4.2 REST API Design
+
+- Use **plural nouns** for resources: `/spikes`, `/presets`, `/users`
+- Use **kebab-case** for multi-word paths
+- Version the API: `/api/v1/...`
+- Use query parameters for filtering, sorting and pagination
+- Return consistent response shapes
+
+**Recommended response format (success):**
+
+```ts
+{
+  data: T | T[],
+  meta?: { total?: number, page?: number, limit?: number }
+}
+```
+
+**Recommended error format:**
+
+```ts
+{
+  error: {
+    code: string,      // e.g. "PRESET_NOT_FOUND"
+    message: string,
+    details?: unknown
+  }
+}
+```
+
+### 4.3 TypeScript in Backend
+
+- Type `Request` and `Response` properly using generics.
+- Separate **Mongoose models** from **API DTOs**.
+- Use Zod schemas as the single source of truth for input validation (and infer types from them when possible).
+- Prefer `interface` for models/DTOs and `type` for unions/discriminated types.
+
+### 4.4 Database & Mongoose
+
+- Use **MongoDB** with **Mongoose**.
+- Define schemas and models in `src/models/`.
+- Use timestamps (`createdAt`, `updatedAt`).
+- Prefer **referencing** over embedding for most relations (especially users ↔ presets).
+- Use `ObjectId` references with proper population when needed.
+
+### 4.5 CRUD Patterns
+
+Use these Mongoose patterns consistently:
+
+| Operation | Recommended Method                                                  | Notes                    |
+| --------- | ------------------------------------------------------------------- | ------------------------ |
+| Create    | `Model.create()`                                                    | Clean and concise        |
+| Read      | `Model.find()`, `Model.findById()`, `Model.findOne()`               | Handle `null` → 404      |
+| Update    | `findByIdAndUpdate(id, update, { new: true, runValidators: true })` | Always use `new: true`   |
+| Delete    | `findByIdAndDelete(id)`                                             | Returns deleted document |
+
+**Pagination + filtering + sorting** should be supported on list endpoints.
+
+### 4.6 Input Validation with Zod
+
+- **Always** validate `req.body`, `req.params` and `req.query` with Zod.
+- Use `safeParse()` in controllers.
+- Use the validated `result.data`, not the raw request object.
+- Keep Zod schemas in `src/types/` or co-located with the route.
+
+### 4.7 Error Handling
+
+- Use a **centralized error handling middleware** (last in the chain).
+- Never leak internal details (stack traces, database errors) to clients.
+- Wrap async route handlers to avoid unhandled promise rejections.
+- Log errors server-side with enough context.
+
+### 4.8 Authentication & Authorization
+
+- Use **JWT** + **bcrypt** for authentication.
+- Store JWT secret and other secrets in environment variables (never in code).
+- Use **role-based access control (RBAC)** for authorization when needed.
+- Protect routes with authentication middleware.
+- Validate tokens on protected endpoints.
+
+### 4.9 Security & Data Protection
+
+- **Never trust the client** — validate everything on the server.
+- Be mindful of NoSQL injection when building dynamic queries.
+- Follow basic OWASP principles (especially input validation and proper error handling).
+- Consider data minimization and secure logging (especially if handling personal data).
+
+### 4.10 Environment & Configuration
+
+- Use `dotenv` + a validated config module.
+- Never commit `.env` files.
+- Validate that all required environment variables exist at startup.
+- Separate configuration clearly between development, test and production.
 
 ## 5. Shared Conventions
 
@@ -133,14 +240,6 @@ This is the most important long-term pattern.
 - Use `.web.ts` / `.native.ts` suffixes for larger differences
 - Use `Platform.select` or `Platform.OS` for small styling/logic differences
 
-Example: Storage adapter
-
-```ts
-// shared/adapters/storage/storage.web.ts
-// shared/adapters/storage/storage.native.ts
-// shared/adapters/storage/index.ts → exports correct one automatically
-```
-
 ### 5.3 Naming Conventions
 
 | Type                 | Convention        | Example                       |
@@ -155,7 +254,7 @@ Example: Storage adapter
 
 ### 5.4 Error Handling & Validation
 
-_(Placeholder – will be expanded with backend material)_
+See sections 4.6 and 4.7 for backend patterns. Frontend should also handle errors gracefully and show user-friendly messages.
 
 ## 6. Do's and Don'ts
 
@@ -166,6 +265,8 @@ _(Placeholder – will be expanded with backend material)_
 - Separate Core logic from platform-specific code
 - Use `StyleSheet.create` in React Native
 - Write tests that describe user behavior
+- Validate all input on the backend with Zod
+- Use consistent response and error formats
 
 **Don't:**
 
@@ -174,3 +275,5 @@ _(Placeholder – will be expanded with backend material)_
 - Forget cleanup in data-fetching effects
 - Nest `FlatList` inside `ScrollView` without a good reason
 - Test internal implementation details
+- Trust client input without server-side validation
+- Expose internal error details to clients

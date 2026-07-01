@@ -10,7 +10,7 @@
 
 ## 1. Project Overview
 
-**Pure Spike Studio** is a free, professional-grade web application for generating high-quality impulse responses (IRs) used in convolution reverbs and transient shaping inside DAWs such as Xfer Serum, Ableton Live, Logic Pro, and others.
+**Pure Spike Studio** is a free, professional-grade web application for generating high-quality impulse responses (IRs). The IRs are intended for use in convolution reverbs and transient shaping within DAWs such as Ableton Live and Logic Pro, as well as in compatible plugins like Xfer Serum 2 (via its Convolve effect).
 
 The application allows users to configure various parameters to create custom impulses and download them instantly as WAV files. While basic usage requires no account, registered users can save, organize, and quickly reload their favorite presets.
 

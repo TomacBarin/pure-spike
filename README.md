@@ -1,73 +1,124 @@
-# React + TypeScript + Vite
+# Pure Spike Studio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**A professional web application for generating high-quality Impulse Responses (IRs)**
 
-Currently, two official plugins are available:
+Pure Spike Studio is a fullstack tool for music producers and sound designers. Create clean, mathematical impulse responses for convolution reverbs and transient shaping in DAWs such as Ableton Live and Logic Pro, as well as in compatible plugins like Xfer Serum 2 (via its Convolve effect).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+### Core Features (MVP)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Impulse Generator** with professional controls:
+  - Sample Rate (44.1 kHz, 48 kHz, 96 kHz, etc.)
+  - Duration & Amplitude
+  - Mono/Stereo with balance control
+  - Fade In / Fade Out
+  - Polarity (phase invert)
+- **Two Impulse Types**:
+  - **Pure Spike** – Clean, perfect single-sample impulse
+  - **Noise Burst** – Noise burst with configurable envelope
+- **Real-time Waveform Visualization** using Canvas (manual or live preview)
+- **High-quality WAV Export** (32-bit float)
+- **Guest Mode** – Full functionality without an account
 
-## Expanding the ESLint configuration
+### User Management (for logged-in users)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Register & login (email + password)
+- Save, organize, and reload **presets**
+- Search, filter, edit, and delete presets
+- Export all presets as JSON
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+## Goals
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Deliver a **polished, portfolio-ready** fullstack project
+- Create a **genuinely useful tool** for the audio community
+- Deepen skills in React, TypeScript, Node.js, MongoDB, and modern web development
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+## Tech Stack
+
+### Frontend
+
+- **React 19 + TypeScript + Vite**
+- Web Audio API + OfflineAudioContext (all generation runs client-side)
+- CSS Modules + design tokens
+- React Router
+- Canvas for waveform rendering
+
+### Backend (planned)
+
+- Node.js + Express
+- MongoDB + Mongoose
+- Zod for validation
+- JWT + bcrypt + refresh tokens
+
+### Design
+
+- **Dark mode** by default
+- Minimalist, plugin-inspired UI (inspired by FabFilter, Cubase, Unfiltered Audio)
+- WCAG 2.1 AA accessibility compliance
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (latest LTS recommended)
+- Git
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/TomacBarin/pure-spike.git
+cd pure-spike
+
+# Install dependencies
+npm install
+
+# Start the development server (frontend)
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+> **Note**: Backend implementation is in progress. The frontend generator currently works standalone.
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+## Project Structure
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+pure-spike/
+├── docs/                 # Documentation (PRD, architecture, etc.)
+├── public/
+├── src/
+│   ├── components/       # Reusable UI components
+│   ├── features/         # Feature-based folders (generator, presets, auth)
+│   ├── hooks/
+│   ├── pages/
+│   ├── api/              # Typed API client
+│   ├── types/            # Shared TypeScript types & Zod schemas
+│   └── utils/
+├── package.json
+└── vite.config.ts
 ```
+
+## Documentation
+
+Detailed information is available in the [`/docs`](./docs/) folder:
+
+- [`project-brief.md`](./docs/project-brief.md) – Project overview and vision
+- [`prd.md`](./docs/prd.md) – Product Requirements Document
+- [`architecture.md`](./docs/architecture.md) – Technical architecture
+- [`user-stories.md`](./docs/user-stories.md) – User stories
+- [`coding-conventions.md`](./docs/coding-conventions.md) – Coding standards
+- [`quality-guidelines.md`](./docs/quality-guidelines.md) – Quality guidelines
+
+## Current Status
+
+The project is in **early development** (MVP in progress). Target: fully functional version by the end of August 2026.
+
+## License
+
+MIT License – see the [LICENSE](./LICENSE) file for details.
+
+---
+
+**Built for music producers and sound designers**
+
+Questions or suggestions? Feel free to open an issue!

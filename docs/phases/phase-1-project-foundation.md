@@ -32,25 +32,36 @@ Build the structural and visual foundation of the application before implementin
 
 ## 2. Folder Structure
 
-Follow the conventions in `coding-conventions.md`. Recommended structure for Phase 1:
+Follow the conventions in [coding-conventions.md](https://github.com/TomacBarin/pure-spike/blob/main/docs/coding-conventions.md) as the source of truth.
 
-```ts
+**For Phase 1 (Frontend Foundation) we use:**
+
+```
+
 src/
-├── components/           # Reusable UI components (Button, Input, Slider, Card, etc.)
-├── layouts/              # Layout components (MainLayout, GeneratorLayout, etc.)
-├── features/             # Feature folders (will grow later: generator, presets, auth)
-├── hooks/                # Custom hooks (useTheme, useLocalStorage, etc.)
-├── styles/               # Global styles + design tokens
-│   ├── globals.css
-│   └── tokens.ts         # Design tokens as TypeScript object + CSS variables
-├── types/                # Shared types and interfaces
-├── utils/                # Helper functions
+├── components/ # Reusable UI components (Button, Input, Slider, Card, etc.)
+├── layouts/ # Layout components (MainLayout, etc.)
+├── pages/ # Page/screen components (will grow later)
+├── features/ # Optional: Feature-specific folders (can be used alongside pages/)
+├── hooks/ # Custom hooks (useTheme, useLocalStorage, etc.)
+├── styles/ # Global styles + design tokens
+│ ├── globals.css
+│ └── tokens.ts
+├── types/ # Shared types and interfaces
+├── utils/ # Helper functions
+├── api/ # API layer (data fetching, will be used more in later phases)
 ├── App.tsx
 ├── main.tsx
 └── vite-env.d.ts
+
 ```
 
-**Note:** We will expand `features/` later when we implement the Generator and Presets.
+**Notes:**
+
+- We align with coding-conventions.md (pages/, api/, etc.).
+- `features/` is kept as optional for feature-sliced organization if it fits well.
+- `utils/` is useful and can be added even if not explicitly listed in the main conventions.
+- Backend folders (`routes/`, `controllers/`, `services/`, `models/` etc.) belong in a separate `backend/` or `server/` folder at root level (to be set up in a later phase).
 
 ---
 

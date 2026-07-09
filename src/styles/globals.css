@@ -1,39 +1,102 @@
 /* ================ Design Tokens as CSS Variables ================ */
-:root {
-  /* Colors */
+
+/* Dark theme (default) */
+:root,
+[data-theme="dark"] {
+  /* Colors - subtle grays for professional dark mode */
   --color-bg-primary: #1a1a1f;
   --color-bg-secondary: #25252b;
   --color-bg-elevated: #2f2f36;
-  
+
   --color-text-primary: #f0f0f5;
   --color-text-secondary: #b0b0b8;
   --color-text-muted: #8a8a92;
-  
+
   --color-accent: #4a9eff;
   --color-border: #3a3a42;
   --color-success: #4ade80;
   --color-error: #f87171;
 
-  /* Spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
+  /* Spacing - 8-point grid system */
+  --spacing-1: 4px;     /* xs */
+  --spacing-2: 8px;     /* sm */
+  --spacing-3: 12px;
+  --spacing-4: 16px;    /* md */
+  --spacing-5: 20px;
+  --spacing-6: 24px;    /* lg */
+  --spacing-8: 32px;    /* xl */
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
 
   /* Radius */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
+  --radius-xl: 24px;
 
   /* Font sizes */
+  --font-size-xs: 13px;
   --font-size-sm: 14px;
   --font-size-md: 16px;
-  --font-size-lg: 20px;
-  --font-size-xl: 24px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 32px;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  /* Colors - clean light grays for good contrast */
+  --color-bg-primary: #f8f9fa;
+  --color-bg-secondary: #e9ecef;
+  --color-bg-elevated: #ffffff;
+
+  --color-text-primary: #212529;
+  --color-text-secondary: #495057;
+  --color-text-muted: #6c757d;
+
+  --color-accent: #0d6efd;
+  --color-border: #dee2e6;
+  --color-success: #198754;
+  --color-error: #dc3545;
+
+  /* Reuse the same spacing, radius and font sizes */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --font-size-xs: 13px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+  --font-size-4xl: 32px;
 }
 
 /* ================ Global Reset & Base Styles ================ */
+
+/* Smooth theme switching */
+html {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Reset */
 *,
 *::before,
 *::after {
@@ -49,12 +112,17 @@ body {
   line-height: 1.5;
 }
 
-/* Smooth focus outlines etc. */
-button, input, select, textarea {
+/* Form elements inherit font */
+button,
+input,
+select,
+textarea {
   font-family: inherit;
 }
 
-/* Optional: Dark mode improvements */
+/* Optional system preference fallback */
 @media (prefers-color-scheme: dark) {
-
+  :root:not([data-theme="light"]) {
+    /* Dark mode remains default when no explicit theme is set */
+  }
 }

@@ -126,3 +126,15 @@ textarea {
     /* Dark mode remains default when no explicit theme is set */
   }
 }
+
+/* Force our theme variables on body and root */
+html, body, #root {
+  background-color: var(--color-bg-primary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Make sure accent etc. are visible */
+button {
+  background-color: var(--color-accent) !important;
+  color: white !important;
+}

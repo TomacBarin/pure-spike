@@ -9,7 +9,7 @@ import { Slider } from './components/ui/Slider/Slider';
 function App() {
   // State to test Input
   const [name, setName] = useState('');           
-  const [duration, setDuration] = useState(2.5);  
+  const [duration, setDuration] = useState(2.5);
   const [amplitude, setAmplitude] = useState(0.8);
 
   const handleGenerate = () => {
@@ -53,15 +53,15 @@ function App() {
         
 
         {/* Number input */}
-        <Input
-          type="number"
-          label="Duration (sekunder)"
-          value={duration}
-          onChange={(e) => setDuration(Number(e.target.value))}
-          min={0.1}
-          max={10}
-          step={0.1}
-        />
+          <Input
+            type="number"
+            label="Duration (seconds)"
+            value={duration}
+            onChange={setDuration}
+            min={0.1}
+            max={10}
+            step={0.1}
+          />
 
         {/* Sliders */}
       <div>

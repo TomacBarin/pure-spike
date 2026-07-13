@@ -4,11 +4,13 @@ import './App.css';
 
 import { Button } from './components/ui/Button/Button';
 import { Input } from './components/ui/Input/Input';
+import { Slider } from './components/ui/Slider/Slider';
 
 function App() {
   // State to test Input
   const [name, setName] = useState('');           
   const [duration, setDuration] = useState(2.5);  
+  const [amplitude, setAmplitude] = useState(0.8);
 
   const handleGenerate = () => {
     alert(`Genererar IR med namn: ${name} och duration: ${duration} sekunder`);
@@ -48,6 +50,8 @@ function App() {
           onChange={(e) => setName(e.target.value)}
         />
 
+        
+
         {/* Number input */}
         <Input
           type="number"
@@ -59,16 +63,42 @@ function App() {
           step={0.1}
         />
 
-        {/* Show actual value */}
-        <p>
-          Current value:<br />
+        {/* Sliders */}
+      <div>
+        <h2>Sliders</h2>
+        
+        <Slider
+          label="Amplitude"
+          value={amplitude}
+          onChange={setAmplitude}
+          min={0}
+          max={1}
+          step={0.01}
+        />
+
+        {/* Visa alla aktuella värden */}
+        <p style={{ marginTop: '1.5rem' }}>
+          Current values:<br />
           Name: <strong>{name || '(empty)'}</strong><br />
-          Duration: <strong>{duration}</strong> Seconds
+          Duration: <strong>{duration}</strong> Seconds<br />
+          Amplitude: <strong>{amplitude}</strong>
         </p>
       </div>
 
     </div>
+
+      
+
+    </div>
+
+    
   );
+
+
+
 }
+
+
+
 
 export default App;

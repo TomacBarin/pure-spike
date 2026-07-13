@@ -5,19 +5,35 @@ import './App.css';
 import { Button } from './components/ui/Button/Button';
 import { Input } from './components/ui/Input/Input';
 import { Slider } from './components/ui/Slider/Slider';
+import { Select } from './components/ui/Select/Select';
 
 function App() {
-  // State to test Input
+  // State för att testa komponenterna
   const [name, setName] = useState('');           
   const [duration, setDuration] = useState(2.5);
   const [amplitude, setAmplitude] = useState(0.8);
+  const [sampleRate, setSampleRate] = useState(44100);     
 
   const handleGenerate = () => {
-    alert(`Genererar IR med namn: ${name} och duration: ${duration} sekunder`);
+    alert(`Genererar IR med namn: ${name}, duration: ${duration}s, amplitude: ${amplitude}, sample rate: ${sampleRate} Hz`);
   };
 
+  // Options för Select
+  const sampleRateOptions = [
+    { value: 44100, label: '44.1 kHz' },
+    { value: 48000, label: '48 kHz' },
+    { value: 96000, label: '96 kHz' },
+    { value: 192000, label: '192 kHz' },
+  ];
+
   return (
-    <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '600px' }}>
+    <div style={{ 
+      padding: '2rem', 
+      display: 'flex', 
+      flexDirection: 'column', 
+      gap: '2rem', 
+      maxWidth: '600px' 
+    }}>
       
       <h1>Pure Spike Studio - Components test</h1>
 
@@ -41,7 +57,6 @@ function App() {
       <div>
         <h2>Inputs</h2>
         
-        {/* Text input */}
         <Input
           type="text"
           label="Preset Name"
@@ -50,20 +65,18 @@ function App() {
           onChange={(e) => setName(e.target.value)}
         />
 
-        
+        <Input
+          type="number"
+          label="Duration (seconds)"
+          value={duration}
+          onChange={setDuration}
+          min={0.1}
+          max={10}
+          step={0.1}
+        />
+      </div>
 
-        {/* Number input */}
-          <Input
-            type="number"
-            label="Duration (seconds)"
-            value={duration}
-            onChange={setDuration}
-            min={0.1}
-            max={10}
-            step={0.1}
-          />
-
-        {/* Sliders */}
+      {/* Sliders */}
       <div>
         <h2>Sliders</h2>
         
@@ -75,30 +88,33 @@ function App() {
           max={1}
           step={0.01}
         />
+      </div>
 
-        {/* Visa alla aktuella värden */}
-        <p style={{ marginTop: '1.5rem' }}>
+      {/* Selects - NY SEKTOR */}
+      <div>
+        <h2>Selects</h2>
+        
+        <Select
+          label="Sample Rate"
+          value={sampleRate}
+          onChange={setSampleRate}
+          options={sampleRateOptions}
+        />
+      </div>
+
+      {/* Visa alla aktuella värden */}
+      <div>
+        <p>
           Current values:<br />
           Name: <strong>{name || '(empty)'}</strong><br />
           Duration: <strong>{duration}</strong> Seconds<br />
-          Amplitude: <strong>{amplitude}</strong>
+          Amplitude: <strong>{amplitude}</strong><br />
+          Sample Rate: <strong>{sampleRate} Hz</strong>
         </p>
       </div>
 
     </div>
-
-      
-
-    </div>
-
-    
   );
-
-
-
 }
-
-
-
 
 export default App;

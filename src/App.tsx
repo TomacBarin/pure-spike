@@ -6,6 +6,7 @@ import { Button } from './components/ui/Button/Button';
 import { Input } from './components/ui/Input/Input';
 import { Slider } from './components/ui/Slider/Slider';
 import { Select } from './components/ui/Select/Select';
+import { Card } from './components/ui/Card/Card';
 
 function App() {
   // State för att testa komponenterna
@@ -101,6 +102,25 @@ function App() {
           options={sampleRateOptions}
         />
       </div>
+
+        {/* Cards */}
+      <div>
+        <h2>Cards / Panels</h2>
+        
+        <Card title="Test Panel">
+          <p>Här kan du gruppera flera kontroller.</p>
+          <Slider 
+            label="Test Slider" 
+            value={amplitude} 
+            onChange={setAmplitude} 
+            min={0} 
+            max={1} 
+            step={0.01} 
+          />
+        </Card>
+      </div>
+
+
 
       {/* Visa alla aktuella värden */}
       <div>

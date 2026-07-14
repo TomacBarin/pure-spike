@@ -78,7 +78,7 @@ function App() {
           label="Preset Name"
           placeholder="My IR-preset"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={setName}
         />
 
         <Input

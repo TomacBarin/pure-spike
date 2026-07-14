@@ -10,6 +10,7 @@ import { Card } from './components/ui/Card/Card';
 
 function App() {
   // State för att testa komponenterna
+  const { theme, toggleTheme } = useTheme();
   const [name, setName] = useState('');           
   const [duration, setDuration] = useState(2.5);
   const [amplitude, setAmplitude] = useState(0.8);
@@ -37,6 +38,20 @@ function App() {
     }}>
       
       <h1>Pure Spike Studio - Components test</h1>
+
+      {/* Theme Switch Test */}
+      <div>
+        <h2>Theme Switch</h2>
+        <Button variant="primary" onClick={toggleTheme}>
+          Toggle Theme (Dark ↔ Light)
+        </Button>
+        
+        <p style={{ marginTop: '0.5rem', fontSize: '0.9rem' }}>
+          Nuvarande theme: <strong>{theme}</strong>
+        </p>
+      </div>
+
+      
 
       {/* Buttons */}
       <div>

@@ -102,27 +102,129 @@ src/
 
 ## 5. Backend Architecture
 
-(unchanged from v0.1 – remains the same)
+### 5.1 Project Structure (following coding conventions)
+
+```
+src/
+├── routes/              # Route definitions only
+├── controllers/         # Thin controllers
+├── services/            # Business logic
+├── models/              # Mongoose models + schemas
+├── middleware/          # auth, validation, errorHandler
+├── types/               # Zod schemas and DTOs
+├── utils/               # Helpers (asyncHandler, getErrorMessage)
+├── config/              # Environment validation
+├── app.ts
+└── server.ts
+```
+
+### 5.2 Layered Architecture
+
+- **Routes** → only define endpoints and attach middleware
+- **Controllers** → handle request/response, call services
+- **Services** → contain business logic (e.g. `PresetService`, `AuthService`)
+- **Models** → Mongoose schemas and document definitions
+
+### 5.3 REST API Design
+
+Base path: `/api/v1`
+
+**Main resource groups:**
+
+- `POST /api/v1/auth/register`
+- `POST /api/v1/auth/login`
+- `POST /api/v1/auth/refresh`
+- `POST /api/v1/auth/logout`
+- `DELETE /api/v1/auth/account` (delete account)
+
+- `GET    /api/v1/presets`
+- `POST   /api/v1/presets`
+- `GET    /api/v1/presets/:id`
+- `PATCH  /api/v1/presets/:id`
+- `DELETE /api/v1/presets/:id`
+- `GET    /api/v1/presets/export` (download JSON)
+
+All protected routes require a valid JWT.
 
 ## 6. Data Model
 
-(unchanged from v0.1 – remains the same)
+### User
+
+```ts
+{
+  _id: ObjectId,
+  email: string,
+  password: string (hashed),
+  createdAt: Date
+}
+```
+
+### Preset
+
+```ts
+{
+  _id: ObjectId,
+  userId: ObjectId (ref: User),
+  name: string,
+  description?: string,
+  tags: string[],
+  impulseType: 'pure' | 'noise',
+  parameters: {
+    sampleRate: number,
+    bitDepth: 32,
+    duration: number,
+    amplitude: number,
+    channels: 'mono' | 'stereo',
+    balance?: number,
+    fadeIn: number,
+    fadeOut: number
+  },
+  createdAt: Date,
+  lastUsedAt: Date,
+  usageCount: number
+}
+```
 
 ## 7. Authentication Flow
 
-(unchanged from v0.1 – remains the same)
+1. User registers → password hashed with bcrypt → user created.
+2. Login → verify credentials → issue short-lived **Access Token** (JWT) + long-lived **Refresh Token** (httpOnly cookie).
+3. Frontend stores Access Token in memory (or secure storage).
+4. On token expiry → use Refresh Token to get new Access Token.
+5. Logout → invalidate refresh token on server.
+
+**Security notes:**
+
+- Refresh tokens stored in httpOnly cookies.
+- Access tokens have short expiry (15–30 min).
+- All sensitive routes protected by authentication middleware.
 
 ## 8. Impulse Generation Flow (Client-side)
 
-(unchanged from v0.1 – remains the same)
+1. User adjusts parameters in UI.
+2. On "Generate Preview" (or live mode) → parameters sent to `ImpulseGenerator` service.
+3. Service uses `OfflineAudioContext` to generate audio buffer.
+4. Buffer is converted to WAV using a lightweight WAV encoder (or `wavefile` library if needed).
+5. Waveform is rendered to `<canvas>`.
+6. On download → WAV file is generated and triggered via `URL.createObjectURL`.
+
+All processing happens in the browser. No audio data is sent to the server.
 
 ## 9. Security Considerations
 
-(unchanged from v0.1 – remains the same)
+- Input validation on **both** frontend and backend using Zod.
+- Passwords hashed with bcrypt (never stored in plain text).
+- JWT secrets stored in environment variables.
+- Centralized error handling middleware that does **not** leak internal details.
+- CORS properly configured.
+- Rate limiting on auth endpoints (recommended for MVP or post-MVP).
 
 ## 10. Deployment Considerations (High-level)
 
-(unchanged from v0.1 – remains the same)
+- **Frontend**: Vercel or Netlify (easy React + Vite hosting)
+- **Backend**: Render, Railway, or Fly.io
+- **Database**: MongoDB Atlas (free tier sufficient for MVP)
+- Environment variables managed securely in hosting platform
 
 ## 11. Key Architectural Decisions & Trade-offs
 

@@ -1,9 +1,9 @@
 # User Stories – Pure Spike Studio
 
-**Version:** 0.1  
-**Date:** 2026-07-03  
-**Status:** Draft  
-**Source:** PRD v0.1 + Architecture v0.1
+**Version:** 0.2  
+**Date:** 2026-07-15  
+**Status:** Updated  
+**Source:** PRD + UI Layout Spec v1.1
 
 ---
 
@@ -84,9 +84,10 @@
 - Saves all current parameters + impulse type + name, description, tags.
 - Clear success message.
 
-**AS-4.2** As a logged-in user I want to view and manage my presets.  
+**AS-4.2** As a logged-in user I want to view and manage my presets from within the Generator.  
 **Acceptance Criteria:**
 
+- Access via sidebar or modal inside Generator context.
 - List of presets with search (name) and tag filtering.
 - Load preset (populates generator).
 - Edit name/description/tags.
@@ -95,7 +96,8 @@
 **AS-4.3** As a logged-in user I want to export all my presets.  
 **Acceptance Criteria:**
 
-- Download button that exports all presets as a single JSON file.
+- "Export all presets as JSON" button available in preset management area.
+- Downloads a single JSON file with all presets and metadata.
 
 ---
 
@@ -104,7 +106,8 @@
 **AS-5.1** As a logged-in user I want to delete my account.  
 **Acceptance Criteria:**
 
-- Confirmation dialog with clear warning.
+- Accessible via Avatar dropdown → Account Settings.
+- Confirmation dialog with clear warning ("Delete Account" in Danger Zone).
 - Deletes user and all associated presets.
 - User is logged out after deletion.
 
@@ -116,14 +119,14 @@
 **Acceptance Criteria:**
 
 - Dark mode by default with subtle grays.
-- Plugin-inspired layout (waveform on top, parameters below, presets sidebar).
+- Minimal navbar (Logo + Generator + Theme + Avatar/Login).
+- Plugin-inspired layout with Generator as the main focus.
 - High contrast and WCAG 2.1 AA compliance.
 
 **AS-6.2** As a user I want the interface to work on different screen sizes.  
 **Acceptance Criteria:**
 
 - Responsive design (desktop-first).
-- Preset panel adapts gracefully on smaller screens.
 
 **AS-6.3** As a user I want clear feedback on all actions.  
 **Acceptance Criteria:**
@@ -138,7 +141,7 @@
 
 - Epic 1 + Epic 2 (Generator + Waveform)
 - Epic 3 (Authentication)
-- Epic 4 (Preset Management – basic)
+- Epic 4 (Preset Management – basic, integrated in Generator)
 - Epic 6 (UI/Layout basics)
 
 **Nice-to-have within MVP:**
@@ -152,10 +155,10 @@
 ## Next Steps After This Document
 
 1. Approve / adjust user stories.
-2. Decide on implementation order (which story do you start with?).
+2. Decide on implementation order.
 3. Create tasks / issues for each story.
-4. Start coding.
+4. Start coding following the UI Layout Spec v1.1.
 
 ---
 
-**End of User Stories v0.1**
+**End of User Stories v0.2**

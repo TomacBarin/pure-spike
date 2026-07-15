@@ -1,10 +1,10 @@
 # Architecture Document – Pure Spike Studio
 
-**Version:** 0.1  
-**Date:** 2026-07-02  
-**Status:** Draft  
+**Version:** 0.2  
+**Date:** 2026-07-15  
+**Status:** Updated  
 **Author:** Solution Architect (BMAD Team)  
-**Based on:** PRD v0.1
+**Based on:** PRD v0.1 + UI Layout Spec v1.1
 
 ---
 
@@ -91,159 +91,55 @@ src/
 
 ### 4.3 Main Screens / Views
 
-- **Generator Page** (main view)
-  - Waveform visualization (Canvas)
-  - Parameter controls
-  - Impulse type selector
-  - Generate / Download actions
-- **My Presets Page**
-  - List of saved presets with search and filtering
-  - Load / Edit / Delete / Export
-- **Account / Settings** (minimal in MVP)
+- **Main Generator View** (primary page)
+  - Minimal navbar (Logo + Generator + Theme + Avatar/Login)
+  - Hero / Intro section
+  - Central Impulse Generator panel (main focus)
+  - Explanatory sections below
+  - Preset management accessed from within Generator context (sidebar/modal)
+
+- **Account Settings** (modal)
 
 ## 5. Backend Architecture
 
-### 5.1 Project Structure (following coding conventions)
-
-```
-src/
-├── routes/              # Route definitions only
-├── controllers/         # Thin controllers
-├── services/            # Business logic
-├── models/              # Mongoose models + schemas
-├── middleware/          # auth, validation, errorHandler
-├── types/               # Zod schemas and DTOs
-├── utils/               # Helpers (asyncHandler, getErrorMessage)
-├── config/              # Environment validation
-├── app.ts
-└── server.ts
-```
-
-### 5.2 Layered Architecture
-
-- **Routes** → only define endpoints and attach middleware
-- **Controllers** → handle request/response, call services
-- **Services** → contain business logic (e.g. `PresetService`, `AuthService`)
-- **Models** → Mongoose schemas and document definitions
-
-### 5.3 REST API Design
-
-Base path: `/api/v1`
-
-**Main resource groups:**
-
-- `POST /api/v1/auth/register`
-- `POST /api/v1/auth/login`
-- `POST /api/v1/auth/refresh`
-- `POST /api/v1/auth/logout`
-- `DELETE /api/v1/auth/account` (delete account)
-
-- `GET    /api/v1/presets`
-- `POST   /api/v1/presets`
-- `GET    /api/v1/presets/:id`
-- `PATCH  /api/v1/presets/:id`
-- `DELETE /api/v1/presets/:id`
-- `GET    /api/v1/presets/export` (download JSON)
-
-All protected routes require a valid JWT.
+(unchanged from v0.1 – remains the same)
 
 ## 6. Data Model
 
-### User
-
-```ts
-{
-  _id: ObjectId,
-  email: string,
-  password: string (hashed),
-  createdAt: Date
-}
-```
-
-### Preset
-
-```ts
-{
-  _id: ObjectId,
-  userId: ObjectId (ref: User),
-  name: string,
-  description?: string,
-  tags: string[],
-  impulseType: 'pure' | 'noise',
-  parameters: {
-    sampleRate: number,
-    bitDepth: 32,
-    duration: number,
-    amplitude: number,
-    channels: 'mono' | 'stereo',
-    balance?: number,
-    fadeIn: number,
-    fadeOut: number
-  },
-  createdAt: Date,
-  lastUsedAt: Date,
-  usageCount: number
-}
-```
+(unchanged from v0.1 – remains the same)
 
 ## 7. Authentication Flow
 
-1. User registers → password hashed with bcrypt → user created.
-2. Login → verify credentials → issue short-lived **Access Token** (JWT) + long-lived **Refresh Token** (httpOnly cookie).
-3. Frontend stores Access Token in memory (or secure storage).
-4. On token expiry → use Refresh Token to get new Access Token.
-5. Logout → invalidate refresh token on server.
-
-**Security notes:**
-
-- Refresh tokens stored in httpOnly cookies.
-- Access tokens have short expiry (15–30 min).
-- All sensitive routes protected by authentication middleware.
+(unchanged from v0.1 – remains the same)
 
 ## 8. Impulse Generation Flow (Client-side)
 
-1. User adjusts parameters in UI.
-2. On "Generate Preview" (or live mode) → parameters sent to `ImpulseGenerator` service.
-3. Service uses `OfflineAudioContext` to generate audio buffer.
-4. Buffer is converted to WAV using a lightweight WAV encoder (or `wavefile` library if needed).
-5. Waveform is rendered to `<canvas>`.
-6. On download → WAV file is generated and triggered via `URL.createObjectURL`.
-
-All processing happens in the browser. No audio data is sent to the server.
+(unchanged from v0.1 – remains the same)
 
 ## 9. Security Considerations
 
-- Input validation on **both** frontend and backend using Zod.
-- Passwords hashed with bcrypt (never stored in plain text).
-- JWT secrets stored in environment variables.
-- Centralized error handling middleware that does **not** leak internal details.
-- CORS properly configured.
-- Rate limiting on auth endpoints (recommended for MVP or post-MVP).
+(unchanged from v0.1 – remains the same)
 
 ## 10. Deployment Considerations (High-level)
 
-- **Frontend**: Vercel or Netlify (easy React + Vite hosting)
-- **Backend**: Render, Railway, or Fly.io
-- **Database**: MongoDB Atlas (free tier sufficient for MVP)
-- Environment variables managed securely in hosting platform
+(unchanged from v0.1 – remains the same)
 
 ## 11. Key Architectural Decisions & Trade-offs
 
 | Decision                   | Chosen Approach             | Reason                                                                  |
 | -------------------------- | --------------------------- | ----------------------------------------------------------------------- |
+| Navbar design              | Minimal (only Generator)    | Keeps focus on the tool itself, plugin-like experience                  |
+| Preset management          | Integrated in Generator     | Strong plugin metaphor, fewer navigation steps                          |
 | Where to generate impulses | Client-side (Web Audio API) | No server cost, instant download, aligns with "free to use" requirement |
 | Authentication             | JWT + Refresh Tokens        | Good security vs complexity balance                                     |
-| State management           | useReducer + Context        | Follows coding conventions, avoids over-engineering                     |
-| Preset storage             | MongoDB                     | Flexible schema, good for metadata                                      |
-| Waveform rendering         | HTML Canvas                 | Good performance and control                                            |
-| API style                  | REST                        | Simple and well understood                                              |
 
 ## 12. Next Steps
 
 1. Review and approve this architecture document.
-2. Break down the PRD into user stories / tasks.
-3. Begin implementation following the defined structure and conventions.
+2. Follow UI Layout Spec v1.1 for frontend implementation.
+3. Break down the PRD into tasks.
+4. Start coding.
 
 ---
 
-**End of Architecture Document v0.1**
+**End of Architecture Document v0.2**

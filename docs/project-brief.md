@@ -1,8 +1,8 @@
 # Project Brief – Pure Spike Studio
 
-**Version:** 0.1  
-**Date:** 2026-07-01  
-**Status:** Draft  
+**Version:** 0.2  
+**Date:** 2026-07-15  
+**Status:** Updated  
 **Author:** BMAD Analyst (in collaboration with Tomac Barin Jansson)  
 **Project Type:** Greenfield Fullstack
 
@@ -74,6 +74,8 @@ Registered users can:
 - View, load, and delete saved presets
 - Quickly regenerate impulses from saved presets
 
+**Note on UI**: Preset management is integrated directly into the Generator context (via sidebar or modal) to maintain a plugin-like experience. There is no separate top-level "Presets" navigation item.
+
 Security is a high priority. The application must follow modern authentication and data protection best practices.
 
 ### 3.5 Design & User Experience
@@ -83,6 +85,8 @@ Security is a high priority. The application must follow modern authentication a
 - Subtle gray tones instead of pure black/white for a more refined look
 - High visual contrast following WCAG 2.1 AA accessibility standards
 - Clear feedback, helpful defaults, and intuitive controls
+- **Minimal navbar**: Logo + "Generator" (active) + Theme toggle + Avatar/Login
+- Explanatory sections (What it is, Who it's for, How to use, Guest vs Account) placed below the main Generator panel
 
 ---
 
@@ -132,8 +136,8 @@ These features may be considered in future iterations after the MVP is complete.
 By the end of August 2026, the following should be achieved:
 
 - A fully functional MVP where users can generate, preview, and download impulses without an account
-- Working user registration, login, and preset saving/loading functionality
-- Professional-looking, accessible, and minimalist user interface
+- Working user registration, login, and preset saving/loading functionality (integrated in Generator context)
+- Professional-looking, accessible, and minimalist user interface with minimal navbar
 - Clean, well-structured codebase that follows the defined coding conventions and quality guidelines
 - The project is suitable to be shown in a portfolio
 
@@ -156,4 +160,4 @@ By the end of August 2026, the following should be achieved:
 
 ---
 
-**End of Project Brief**
+**End of Project Brief v0.2**

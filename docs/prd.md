@@ -1,10 +1,10 @@
 # Product Requirements Document (PRD) – Pure Spike Studio
 
-**Version:** 0.1  
-**Date:** 2026-07-02  
-**Status:** Draft  
+**Version:** 0.2  
+**Date:** 2026-07-15  
+**Status:** Updated  
 **Author:** PM (BMAD Team)  
-**Based on:** Project Brief v0.1
+**Based on:** Project Brief v0.2 + UI Layout Spec v1.1
 
 ---
 
@@ -19,7 +19,7 @@ The application supports both guest usage (full generation and download without 
 - Deliver a polished, portfolio-ready fullstack application by the end of August 2026.
 - Provide a genuinely useful tool for music producers and sound designers.
 - Allow the developer to practice and demonstrate skills in React, TypeScript, Node.js, MongoDB, authentication, and clean architecture.
-- Maintain a professional, minimalist, and accessible user experience.
+- Maintain a professional, minimalist, and accessible user experience with a clean, plugin-like interface.
 
 ## 3. Target Users
 
@@ -64,7 +64,7 @@ The application supports both guest usage (full generation and download without 
 - Users can register and log in using email and password.
 - Password requirements: Minimum 8 characters, at least one letter and one number.
 - JWT-based authentication with short-lived access tokens + refresh tokens (httpOnly).
-- Logged-in users can access the Preset panel.
+- Logged-in users can access preset management and account settings.
 
 ### 4.5 Preset Management
 
@@ -74,20 +74,22 @@ The application supports both guest usage (full generation and download without 
 - Search functionality on preset name and tags is available.
 - Users can export all their presets as a downloadable JSON file.
 
+**UI Placement**: Preset management is accessed from within the Generator panel/context (via sidebar or modal), not as a separate top-level navigation item. This maintains a strong plugin-like user experience.
+
 ### 4.6 Account Management
 
 - Logged-in users can permanently delete their account.
 - Account deletion removes the user and all associated presets.
 - Deletion requires confirmation and clear communication of consequences.
+- Accessible via Avatar dropdown → Account Settings modal (with Danger Zone section).
 
 ### 4.7 User Interface & Design
 
 - Professional, minimalist design inspired by tools such as Cubase, FabFilter, and Unfiltered Audio.
 - Dark mode enabled by default with subtle gray tones and high contrast (WCAG 2.1 AA).
-- Primary layout follows a plugin-style approach:
-  - Waveform visualization at the top
-  - Parameters below
-  - Preset panel always visible (blurred with login prompt when user is not logged in)
+- **Minimal navbar**: Logo + "Generator" (active/clickable) + Theme toggle + Avatar/Login buttons.
+- Primary focus on the central Impulse Generator panel.
+- Explanatory sections (What it is, Who it's for, How to use, Guest vs Account) placed below the Generator.
 - The interface is responsive and adapts to different screen widths (desktop-first).
 
 ## 5. Non-Functional Requirements
@@ -124,9 +126,9 @@ The application supports both guest usage (full generation and download without 
 - Full impulse generation and download (guest + logged in)
 - Waveform preview with optional live mode
 - User registration, login, and logout
-- Preset saving, loading, editing, searching, and JSON export
-- Account deletion
-- Professional minimalist UI with dark mode default
+- Preset saving, loading, editing, searching, and JSON export (integrated in Generator context)
+- Account deletion via Account Settings
+- Professional minimalist UI with minimal navbar and dark mode default
 - Responsive design
 
 ### Out of Scope (MVP)
@@ -140,7 +142,7 @@ The application supports both guest usage (full generation and download without 
 ## 8. Success Metrics
 
 - A fully working MVP is complete and usable by end of August 2026.
-- The application feels professional and pleasant to use.
+- The application feels professional and pleasant to use with a clean, plugin-like flow.
 - The codebase follows the defined coding conventions and quality standards.
 - The project is suitable for a portfolio presentation.
 
@@ -157,4 +159,4 @@ The application supports both guest usage (full generation and download without 
 
 ---
 
-**End of PRD Draft v0.1**
+**End of PRD Draft v0.2**

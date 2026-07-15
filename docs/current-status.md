@@ -27,3 +27,16 @@ All subtasks under "Theme System" are now complete.
   - All subtasks under Step 4 completed
 
 All core base UI components are now ready for use in layouts and features.
+
+### Completed (2026-07-15)
+
+- **UI Layout Specification** (Issue #9)
+  - Created detailed **UI Layout Spec v1.1**
+  - Defined minimal navbar (Logo + Generator + Theme + Avatar/Login)
+  - Generator as central focus with explanatory sections below
+  - Preset management integrated into Generator context (sidebar/modal triggered from within the panel) — plugin-like experience
+  - Account Settings (including Delete Account) accessible via avatar dropdown
+  - JSON export of all presets available in preset management area
+  - Clear separation of Guest vs Logged-in flows
+
+The overall page structure and user experience flow are now defined and ready for implementation.

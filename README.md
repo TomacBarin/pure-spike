@@ -79,7 +79,7 @@ npm install
 npm run dev
 ```
 
-> **Note**: Backend implementation is in progress. The frontend generator currently works standalone.
+> **Current focus**: Building the frontend website shell. Backend and Impulse Generator implementation planned after frontend is complete.
 
 ## Project Structure
 

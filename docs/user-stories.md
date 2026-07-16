@@ -5,6 +5,8 @@
 **Status:** Updated  
 **Source:** PRD + UI Layout Spec v1.1
 
+**Note on development order**: The website frontend shell (navbar, hero, layout, structure and explanatory sections) is being built first. The detailed implementation of the Impulse Generator (Epic 1) and Waveform Visualization (Epic 2) will be done **after** the website layout is complete.
+
 ---
 
 ## Epic 1: Impulse Generator (Core) – **Highest Priority (MVP)**

@@ -230,8 +230,8 @@ All processing happens in the browser. No audio data is sent to the server.
 
 | Decision                   | Chosen Approach             | Reason                                                                  |
 | -------------------------- | --------------------------- | ----------------------------------------------------------------------- |
-| Navbar design              | Minimal (only Generator)    | Keeps focus on the tool itself, plugin-like experience                  |
-| Preset management          | Integrated in Generator     | Strong plugin metaphor, fewer navigation steps                          |
+| Navbar design              | Minimal (only Generator)    | Keeps focus on the tool itself, clean workflow                          |
+| Preset management          | Integrated in Generator     | Focused workflow inside the tool, fewer navigation steps                |
 | Where to generate impulses | Client-side (Web Audio API) | No server cost, instant download, aligns with "free to use" requirement |
 | Authentication             | JWT + Refresh Tokens        | Good security vs complexity balance                                     |
 

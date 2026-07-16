@@ -19,7 +19,7 @@ The application supports both guest usage (full generation and download without 
 - Deliver a polished, portfolio-ready fullstack application by the end of August 2026.
 - Provide a genuinely useful tool for music producers and sound designers.
 - Allow the developer to practice and demonstrate skills in React, TypeScript, Node.js, MongoDB, authentication, and clean architecture.
-- Maintain a professional, minimalist, and accessible user experience with a clean, plugin-like interface.
+- Maintain a professional, minimalist, and accessible user experience. The overall website follows the aesthetic of professional audio software marketing sites, while the central Generator panel uses precise, plugin-style controls.
 
 ## 3. Target Users
 
@@ -74,7 +74,7 @@ The application supports both guest usage (full generation and download without 
 - Search functionality on preset name and tags is available.
 - Users can export all their presets as a downloadable JSON file.
 
-**UI Placement**: Preset management is accessed from within the Generator panel/context (via sidebar or modal), not as a separate top-level navigation item. This maintains a strong plugin-like user experience.
+**UI Placement**: Preset management is accessed from within the Generator panel/context (via sidebar or modal), not as a separate top-level navigation item. This keeps the workflow focused inside the Generator area.
 
 ### 4.6 Account Management
 
@@ -85,7 +85,7 @@ The application supports both guest usage (full generation and download without 
 
 ### 4.7 User Interface & Design
 
-- Professional, minimalist design inspired by tools such as Cubase, FabFilter, and Unfiltered Audio.
+- Professional, minimalist website design inspired by the marketing websites of FabFilter, Steinberg Cubase, and Unfiltered Audio. The Impulse Generator panel will use precise, plugin-style controls, inspired by FabFilter, Brainworx and Unfiltered Audio.
 - Dark mode enabled by default with subtle gray tones and high contrast (WCAG 2.1 AA).
 - **Minimal navbar**: Logo + "Generator" (active/clickable) + Theme toggle + Avatar/Login buttons.
 - Primary focus on the central Impulse Generator panel.
@@ -142,7 +142,7 @@ The application supports both guest usage (full generation and download without 
 ## 8. Success Metrics
 
 - A fully working MVP is complete and usable by end of August 2026.
-- The application feels professional and pleasant to use with a clean, plugin-like flow.
+- The application feels professional and pleasant to use with a clean, focused workflow.
 - The codebase follows the defined coding conventions and quality standards.
 - The project is suitable for a portfolio presentation.
 

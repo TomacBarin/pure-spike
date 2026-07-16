@@ -4,7 +4,7 @@
 **Date:** 2026-07-15  
 **Status:** Approved  
 **Author:** BMAD UX Expert (Sally)  
-**Changes in v1.1:** Navbar simplified. Preset management moved into Generator context (hybrid plugin-like approach).
+**Changes in v1.1:** Navbar simplified. Preset management integrated into the Generator area for a focused workflow.
 
 ---
 
@@ -16,6 +16,10 @@
 - Strong focus on the Generator as the main tool.
 - Clear separation between Guest and Logged-in experiences.
 - All text in English.
+
+### Development approach (current phase):
+
+This document describes the layout and structure of the full website. The developer is currently building the complete frontend website shell first (navbar, hero, generator layout + placeholder, explanatory sections, and responsive structure). The detailed functional implementation of the Impulse Generator (parameters, canvas logic, Web Audio processing, etc.) will be done after the website layout and visual design is complete.
 
 ---
 
@@ -65,7 +69,7 @@ Contains the **Impulse Generator** as the primary, prominent module.
 
 #### 2.3.1 Preset Management (Logged-in users only)
 
-Preset handling is integrated into the Generator context (plugin-like experience).
+Preset management for logged-in users is integrated directly into the Generator area (via sidebar or modal). This keeps the user focused on the tool without requiring a separate top-level navigation item.
 
 **How it works:**
 
@@ -156,7 +160,7 @@ On click → Confirmation modal (recommended: type `DELETE` + password confirmat
 ## 5. Technical & Implementation Notes (High-level)
 
 - Navbar is intentionally minimal.
-- Preset management lives inside the Generator context (sidebar or modal) to maintain a plugin-like feel.
+- Preset management lives inside the Generator area (sidebar or modal) to keep the workflow focused.
 - Account Settings remains a modal (keeps user in context).
 - Generator is kept as an isolated module.
 - Explanatory sections are static content below the main tool.

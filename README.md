@@ -53,9 +53,10 @@ Pure Spike Studio is a fullstack tool for music producers and sound designers. C
 
 ### Design
 
-- **Dark mode** by default
-- Minimalist, plugin-inspired UI (inspired by FabFilter, Cubase, Unfiltered Audio)
-- WCAG 2.1 AA accessibility compliance
+- **Dark mode** by default with subtle gray tones and high contrast (WCAG 2.1 AA)
+- Overall website aesthetic inspired by the professional marketing websites of [FabFilter](https://fabfilter.com), [Steinberg Cubase](https://steinberg.net/cubase), and [Unfiltered Audio](https://unfilteredaudio.com).
+- The central Impulse Generator panel will have precise, plugin-style controls _(detailed implementation after the website shell is complete)_
+- Minimal navbar: Logo + "Generator" (active) + Theme toggle + Login/Avatar
 
 ## Getting Started
 

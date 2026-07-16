@@ -74,13 +74,13 @@ Registered users can:
 - View, load, and delete saved presets
 - Quickly regenerate impulses from saved presets
 
-**Note on UI**: Preset management is integrated directly into the Generator context (via sidebar or modal) to maintain a plugin-like experience. There is no separate top-level "Presets" navigation item.
+**Note on UI**: Preset management is integrated directly into the Generator area (via sidebar or modal). There is no separate top-level "Presets" navigation item. This keeps the workflow focused on the tool.
 
 Security is a high priority. The application must follow modern authentication and data protection best practices.
 
 ### 3.5 Design & User Experience
 
-- Professional, minimalist, and clean interface (inspired by Cubase, FabFilter, Unfiltered Audio, and Blender)
+- Professional, minimalist website design inspired by the marketing websites of [FabFilter](https://fabfilter.com), [Steinberg Cubase](https://steinberg.net/cubase), and [Unfiltered Audio](https://unfilteredaudio.com). The central Impulse Generator panel will use precise, plugin-style controls (inspired by FabFilter, Brainworx and Unfiltered Audio).
 - Dark mode enabled by default
 - Subtle gray tones instead of pure black/white for a more refined look
 - High visual contrast following WCAG 2.1 AA accessibility standards

@@ -3,6 +3,7 @@ import Navbar from "../components/layout/Navbar/Navbar";
 function HomePage() {
   return (
     <div>
+      <div id="top"></div>
       <Navbar />
       <main>
         <div style={{ padding: '2rem' }}>

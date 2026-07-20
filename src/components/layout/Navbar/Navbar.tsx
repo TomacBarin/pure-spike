@@ -13,14 +13,10 @@ function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         {/* Logo */}
-        <div 
-            className={styles.logo} 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            style={{ cursor: 'pointer' }}
-            >
-            Pure Spike Studio
-            </div>
-
+        <a href="#top" className={styles.logo}>
+        Pure Spike Studio
+        </a>
+        
         {/* Navigation */}
         <div className={styles.navLinks}>
           <a href="#generator" className={styles.activeLink}>

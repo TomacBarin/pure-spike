@@ -40,3 +40,17 @@ All core base UI components are now ready for use in layouts and features.
   - Clear separation of Guest vs Logged-in flows
 
 The overall page structure and user experience flow are now defined and ready for implementation.
+
+### Completed (2026-07-21)
+
+- **Frontend Website Shell – Navbar** (Issue #13)
+  - Built sticky `Navbar` component in `src/components/layout/Navbar/`
+  - Minimal design matching UI Layout Spec v1.1: Logo, Generator nav, Theme toggle
+  - Guest view: Login / Register buttons
+  - Logged-in view: Avatar with dropdown (Account Settings + Logout)
+  - Logo click scrolls smoothly to top
+  - Used existing `Button` component and `useTheme` hook for consistency
+  - Mock auth state for testing (easy to replace with real AuthContext later)
+  - Responsive foundation and clean CSS Modules styling
+
+All parts of the Navbar according to the layout specification are now complete and integrated into the HomePage.

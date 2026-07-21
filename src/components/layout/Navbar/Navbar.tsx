@@ -55,7 +55,7 @@ function Navbar() {
               
               {showDropdown && (
                 <div className={styles.dropdown}>
-                  <button onClick={() => alert('Account Settings – modal kommer senare')}>
+                  <button onClick={() => alert('Account Settings – modal will be added later')}>
                     Account Settings
                   </button>
                   <button onClick={handleLogout}>

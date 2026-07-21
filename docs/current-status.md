@@ -101,4 +101,10 @@ The main content area now has a proper visual Generator panel. Frontend shell st
   - Fully accessible and styled with design tokens
   - Integrated into `HomePage`
 
-The main page content flow is now complete: Navbar → Hero → Generator Panel → Explanatory Sections.
+- **Footer** (added)
+  - Created simple `Footer` component in `src/components/layout/Footer/`
+  - Copyright + short tagline
+  - Clean styling with design tokens
+  - Added to `HomePage`
+
+The complete page shell is now in place: Navbar → Hero → Generator Panel → Explanatory Sections → Footer.

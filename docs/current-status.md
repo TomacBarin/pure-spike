@@ -85,3 +85,20 @@ The Hero section is now complete and the main page structure (Navbar → Hero �
   - Integrated into `HomePage` and removed previous inline styles
 
 The main content area now has a proper visual Generator panel. Frontend shell structure continues to take shape.
+
+### Completed (2026-07-21)
+
+- **Explanatory Sections** (Issue #16)
+  - Built `ExplanatorySections` component in `src/components/layout/ExplanatorySections/`
+  - Responsive card grid with four cards according to UI Layout Spec v1.1:
+    - What is Pure Spike Studio?
+    - Who is it for?
+    - How to use it
+    - Guest vs Account
+  - Reused existing `Card` component
+  - Clean CSS Grid with breakpoints (1 column → 2 columns)
+  - Subtle background separation from the Generator panel
+  - Fully accessible and styled with design tokens
+  - Integrated into `HomePage`
+
+The main page content flow is now complete: Navbar → Hero → Generator Panel → Explanatory Sections.

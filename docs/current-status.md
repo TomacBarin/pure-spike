@@ -43,14 +43,19 @@ The overall page structure and user experience flow are now defined and ready fo
 
 ### Completed (2026-07-21)
 
-- **Frontend Website Shell – Navbar** (Issue #13)
-  - Built sticky `Navbar` component in `src/components/layout/Navbar/`
-  - Minimal design matching UI Layout Spec v1.1: Logo, Generator nav, Theme toggle
-  - Guest view: Login / Register buttons
-  - Logged-in view: Avatar with dropdown (Account Settings + Logout)
-  - Logo click scrolls smoothly to top
-  - Used existing `Button` component and `useTheme` hook for consistency
-  - Mock auth state for testing (easy to replace with real AuthContext later)
-  - Responsive foundation and clean CSS Modules styling
+- **Frontend Website Shell – Structure & Routing** (Issue #12)
+  - Installed `react-router-dom` and set up `BrowserRouter`
+  - Extended project structure with `layouts/`, `pages/`, `components/layout/`, `features/`, `hooks/`, `types/`, `utils/` and `api/`
+  - Created basic `HomePage` placeholder
+  - Updated `main.tsx` and `App.tsx` to use routing
 
-All parts of the Navbar according to the layout specification are now complete and integrated into the HomePage.
+- **Navbar Component** (Issue #13)
+  - Built sticky, minimal Navbar according to UI Layout Spec v1.1
+  - Logo (click scrolls to top), "Generator" nav link, theme toggle
+  - Guest view: Login/Register buttons
+  - Logged-in view: Avatar with dropdown (Account Settings + Logout)
+  - Mock auth state for easy testing (to be replaced with real AuthContext later)
+  - Responsive foundation and clean CSS Modules styling
+  - Verified sticky behavior, theme switching and smooth navigation
+
+The core navigation and overall page skeleton is now in place. Ready to build Hero section and Generator placeholder.

@@ -1,5 +1,6 @@
 import Navbar from "../components/layout/Navbar/Navbar";
 import Hero from "../components/layout/Hero/Hero";
+import GeneratorPanel from "../features/generator/GeneratorPanel";
 
 function HomePage() {
   return (
@@ -8,14 +9,7 @@ function HomePage() {
       <Navbar />
       <main>
         <Hero />
-
-        {/* Placeholder för Generator – vi bygger den senare */}
-        <section id="generator" style={{ minHeight: "400px", padding: "4rem 0" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 1.5rem" }}>
-            <h2>Impulse Generator (coming soon)</h2>
-            <p>This is where the generator will be placed.</p>
-          </div>
-        </section>
+        <GeneratorPanel />
       </main>
     </div>
   );

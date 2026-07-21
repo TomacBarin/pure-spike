@@ -3,7 +3,7 @@ import styles from "./Hero.module.css";
 
 function Hero() {
   const handleStartGenerating = () => {
-    // Smooth scroll for the generator (id="generator" will be added later)
+    // Smooth scroll to the generator section
     const generatorSection = document.getElementById("generator");
     if (generatorSection) {
       generatorSection.scrollIntoView({ behavior: "smooth" });

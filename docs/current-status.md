@@ -59,3 +59,16 @@ The overall page structure and user experience flow are now defined and ready fo
   - Verified sticky behavior, theme switching and smooth navigation
 
 The core navigation and overall page skeleton is now in place. Ready to build Hero section and Generator placeholder.
+
+### Completed (2026-07-21)
+
+- **Hero / Intro Section** (Issue #14)
+  - Built `Hero` component in `src/components/layout/Hero/`
+  - Headline, subheadline and supporting text according to UI Layout Spec v1.1
+  - Primary CTA button (“Start Generating”) with smooth scroll to `#generator`
+  - Fully styled with CSS Modules + design tokens
+  - Accessible (`section` + `aria-labelledby`)
+  - Integrated into `HomePage` and cleaned up the previous placeholder content
+  - Minimal generator placeholder section added with `id="generator"`
+
+The Hero section is now complete and the main page structure (Navbar → Hero → Generator area) is in place.

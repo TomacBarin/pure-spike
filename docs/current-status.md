@@ -72,3 +72,16 @@ The core navigation and overall page skeleton is now in place. Ready to build He
   - Minimal generator placeholder section added with `id="generator"`
 
 The Hero section is now complete and the main page structure (Navbar → Hero → Generator area) is in place.
+
+### Completed (2026-07-21)
+
+- **Generator Placeholder Panel** (Issue #15)
+  - Created `GeneratorPanel` component in `src/features/generator/`
+  - Used existing `Card` component with title “Impulse Generator”
+  - Clean placeholder content explaining that the full generator comes later
+  - Temporary disabled buttons as visual hint of future impulse types (Pure Spike / Noise Burst)
+  - Proper section with `id="generator"` (keeps smooth-scroll from Hero + Navbar working)
+  - Fully styled with CSS Modules + design tokens
+  - Integrated into `HomePage` and removed previous inline styles
+
+The main content area now has a proper visual Generator panel. Frontend shell structure continues to take shape.

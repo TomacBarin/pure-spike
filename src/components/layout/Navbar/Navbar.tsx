@@ -25,13 +25,6 @@ function Navbar() {
           Pure Spike Studio
         </a>
 
-        {/* Navigation */}
-        <div className={styles.navLinks}>
-          <a href="#generator" className={styles.activeLink}>
-            Generator
-          </a>
-        </div>
-
         {/* Right side */}
         <div className={styles.rightSide}>
           {/* Theme toggle */}

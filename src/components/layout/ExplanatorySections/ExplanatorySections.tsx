@@ -13,24 +13,11 @@ function ExplanatorySections() {
           {/* Card 1 */}
           <Card title="What is Pure Spike Studio?" padding="md">
             <p>
-              Pure Spike Studio lets you instantly generate high-quality impulse
-              responses (IRs) for use in convolution reverbs and transient
-              shaping tools in your DAW. Choose between clean Pure Spike
-              impulses or configurable Noise Bursts.
+              Pure Spike Studio lets you instantly generate high-quality impulse responses for convolution reverbs and transient shaping. Built for music producers and sound designers who want professional results without complicated setup.
             </p>
           </Card>
 
           {/* Card 2 */}
-          <Card title="Who is it for?" padding="md">
-            <p>
-              Music producers and sound designers who need fast,
-              professional-grade impulse responses without complicated setup.
-              Perfect for convolution reverbs and transient shaping in DAWs and
-              plugins such as Ableton Live and Xfer Serum 2.
-            </p>
-          </Card>
-
-          {/* Card 3 */}
           <Card title="How to use it" padding="md">
             <ol className={styles.steps}>
               <li>Adjust the parameters in the generator.</li>
@@ -43,7 +30,7 @@ function ExplanatorySections() {
             </ol>
           </Card>
 
-          {/* Card 4 */}
+          {/* Card 3 */}
           <Card title="Guest vs Account" padding="md">
             <ul className={styles.list}>
               <li>

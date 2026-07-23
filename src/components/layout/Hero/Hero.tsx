@@ -25,13 +25,7 @@ function Hero() {
         <p className={styles.supportingText}>
           Free to use as a guest. Create a free account to save and manage your
           presets.
-        </p>
-
-        <div className={styles.cta}>
-          <Button variant="primary" size="lg" onClick={handleStartGenerating}>
-            Start Generating
-          </Button>
-        </div>
+        </p>        
       </div>
     </section>
   );

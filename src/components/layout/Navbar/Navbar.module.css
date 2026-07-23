@@ -29,17 +29,6 @@
   color: var(--color-accent);
 }
 
-.navLinks {
-  display: flex;
-  gap: var(--spacing-6);
-}
-
-.activeLink {
-  color: var(--color-accent);
-  font-weight: 500;
-  text-decoration: none;
-}
-
 .rightSide {
   display: flex;
   align-items: center;

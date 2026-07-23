@@ -31,10 +31,7 @@
   line-height: 1.6;
 }
 
-.cta {
-  display: flex;
-  justify-content: center;
-}
+
 
 /* === Responsive === */
 @media (max-width: 640px) {

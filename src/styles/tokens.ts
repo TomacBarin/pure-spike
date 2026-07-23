@@ -10,7 +10,7 @@ export const tokens = {
       secondary: "#b0b0b8",
       muted: "#8a8a92",
     },
-    accent: "#4a9eff", // Subtle blue accent (can be adjusted)
+    accent: "#2dd4bf",
     border: "#3a3a42",
     success: "#4ade80",
     error: "#f87171",

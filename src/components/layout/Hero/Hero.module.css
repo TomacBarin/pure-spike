@@ -13,15 +13,19 @@
   font-size: var(--font-size-4xl);
   font-weight: 700;
   color: var(--color-text-primary);
-  margin: 0 0 var(--spacing-4);
+  margin: 0 0 var(--spacing-6);
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .subheadline {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   color: var(--color-text-secondary);
-  margin: 0 0 var(--spacing-6);
+  margin: 0;
   line-height: 1.5;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .supportingText {
@@ -40,11 +44,11 @@
   }
 
   .headline {
-    font-size: var(--font-size-3xl); 
+    font-size: var(--font-size-3xl);
   }
 
   .subheadline {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
   }
 
   .container {

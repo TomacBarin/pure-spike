@@ -35,20 +35,24 @@ function Navbar() {
         {/* Right side */}
         <div className={styles.rightSide}>
           {/* Theme toggle */}
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="sm"
             onClick={toggleTheme}
-            title="Toggle theme"
+            aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
           >
-            {theme === 'dark' ? '☀️' : '🌙'}
+            {theme === "dark" ? "☀️" : "🌙"}
           </Button>
 
           {isLoggedIn ? (
             <div className={styles.avatarContainer}>
-              <button 
+              <button
                 className={styles.avatarButton}
                 onClick={toggleDropdown}
+                aria-label="Account menu"
+                aria-expanded={showDropdown}
+                aria-haspopup="true"
               >
                 👤
               </button>

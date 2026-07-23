@@ -4,9 +4,19 @@ import styles from "./GeneratorPanel.module.css";
 
 function GeneratorPanel() {
   return (
-    <section id="generator" className={styles.section} aria-labelledby="generator-heading">
+    <section
+      id="generator"
+      className={styles.section}
+      aria-labelledby="generator-heading"
+    >
       <div className={styles.container}>
-        <Card title="Impulse Generator" padding="lg" className={styles.panel}>
+        <Card
+          title="Impulse Generator"
+          titleAs="h2"
+          titleId="generator-heading"
+          padding="lg"
+          className={styles.panel}
+        >
           <div className={styles.placeholderContent}>
             <p className={styles.message}>
               The full Impulse Generator will live here.

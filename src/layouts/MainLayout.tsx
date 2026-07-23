@@ -4,11 +4,11 @@ import Footer from "../components/layout/Footer/Footer";
 
 function MainLayout() {
   return (
-    <div className="app-shell">
+    <div className="app-shell" style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <Navbar />
-        <main>
-            <Outlet />
-        </main>
+      <main style={{ flex: 1 }}>
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );

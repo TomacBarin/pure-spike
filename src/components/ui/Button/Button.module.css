@@ -21,12 +21,13 @@
 /* === VARIANTS === */
 
 .primary {
-  background-color: var(--color-accent);
-  color: white;
+  background: linear-gradient(to bottom, #7AD1C8, #56ABA8);
+  color: #0a0a0a;                    
+  border: none;
 }
 
 .primary:hover:not(:disabled) {
-  filter: brightness(1.1);
+  filter: brightness(1.08);
 }
 
 .secondary {

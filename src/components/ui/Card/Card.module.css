@@ -1,30 +1,37 @@
 .card {
-  background-color: var(--color-bg-primary);   
+  background-color: var(--color-bg-primary);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: none;                            
+  box-shadow: none;
   overflow: hidden;
 }
+
 .title {
-  padding: var(--spacing-4) var(--spacing-4) var(--spacing-3);
-  font-size: var(--font-size-lg);
+  margin: 0;  
+  margin-top: var(--spacing-3);
+  margin-bottom: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-4) var(--spacing-2);
+  font-size: var(--font-size-xl);
   font-weight: 600;
   color: var(--color-text-primary);
-  border-bottom: 1px solid var(--color-border);
 }
 
 .content {
-  padding: var(--spacing-4);
+  padding: 0 var(--spacing-4) var(--spacing-4);   /* ingen top-padding */
+}
+
+.content > *:first-child {
+  margin-top: 0;
 }
 
 .sm .content {
-  padding: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3) var(--spacing-3);
 }
 
 .md .content {
-  padding: var(--spacing-4);
+  padding: var(--spacing-2) var(--spacing-4) var(--spacing-4);
 }
 
 .lg .content {
-  padding: var(--spacing-5);
+  padding: var(--spacing-3) var(--spacing-5) var(--spacing-5);
 }

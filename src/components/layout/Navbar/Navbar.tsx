@@ -22,7 +22,10 @@ function Navbar() {
       <div className={styles.container}>
         {/* Logo */}
         <a href="#top" className={styles.logo}>
-          {/* Icon goes here */}
+          
+          
+
+          
           <span className={styles.logoText}>
             <strong className={styles.logoBold}>Pure Spike</strong>
             <span className={styles.logoLight}> Studio</span>

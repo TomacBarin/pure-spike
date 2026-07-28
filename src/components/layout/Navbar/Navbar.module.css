@@ -45,6 +45,13 @@
   opacity: 0.85;
 }
 
+.logoIcon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
 .rightSide {
   display: flex;
   align-items: center;

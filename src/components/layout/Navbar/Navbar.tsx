@@ -22,10 +22,14 @@ function Navbar() {
       <div className={styles.container}>
         {/* Logo */}
         <a href="#top" className={styles.logo}>
-          
-          
+          <img
+            src="/icons/pssLogo_fixed.svg"
+            alt=""
+            className={styles.logoIcon}
+            width={22}
+            height={22}
+          />
 
-          
           <span className={styles.logoText}>
             <strong className={styles.logoBold}>Pure Spike</strong>
             <span className={styles.logoLight}> Studio</span>

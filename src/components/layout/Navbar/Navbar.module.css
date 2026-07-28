@@ -17,16 +17,32 @@
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;                 
   font-size: var(--font-size-xl);
-  font-weight: bold;
   color: var(--color-text-primary);
-  text-decoration: none;          
+  text-decoration: none;
   cursor: pointer;
   transition: color 0.15s ease;
+  line-height: 1.2;
 }
 
 .logo:hover {
   color: var(--color-accent);
+}
+
+.logoText {
+  display: inline;             
+}
+
+.logoBold {
+  font-weight: 700;
+}
+
+.logoLight {
+  font-weight: 400;
+  opacity: 0.85;
 }
 
 .rightSide {
@@ -101,6 +117,19 @@
   .logo {
     font-size: var(--font-size-lg);
   }
+
+  @media (max-width: 400px) {
+  .logoText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.15;
+  }
+
+  .logoLight {
+    margin-left: 0;            
+  }
+}
 
   .navLinks {
     display: none; /* Hides the Generator link on small screens */

@@ -17,7 +17,7 @@
 }
 
 .content {
-  padding: 0 var(--spacing-4) var(--spacing-4);   /* ingen top-padding */
+  padding: 0 var(--spacing-4) var(--spacing-4);   
 }
 
 .content > *:first-child {

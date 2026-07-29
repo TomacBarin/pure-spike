@@ -52,10 +52,15 @@
   display: block;
 }
 
+.themeToggle {
+  color: var(--color-text-primary);   
+  padding: var(--spacing-1) var(--spacing-2);
+}
+
 .rightSide {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: var(--spacing-0);   
 }
 
 .authButtons {

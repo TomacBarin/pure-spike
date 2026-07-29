@@ -27,7 +27,9 @@
 }
 
 .primary:hover:not(:disabled) {
-  filter: brightness(1.08);
+  
+  filter: brightness(1.12);
+  
 }
 
 .secondary {

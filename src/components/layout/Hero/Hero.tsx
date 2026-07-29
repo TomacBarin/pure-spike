@@ -30,7 +30,7 @@ function Hero() {
           <Button variant="primary" size="sm" onClick={handleStartGenerating}>
             Start generating
           </Button>
-          <Button variant="ghost" size="sm" onClick={handleCreateAccount}>
+          <Button variant="secondary" size="sm" onClick={handleCreateAccount}>
             Create free account
           </Button>
         </div>

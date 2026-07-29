@@ -10,7 +10,7 @@ function Footer() {
           © {currentYear} Pure Spike Studio
         </p>
         <p className={styles.tagline}>
-          Generate pristine impulse responses for your DAW
+          Generate pure, pristine impulse responses for sound design
         </p>
       </div>
     </footer>

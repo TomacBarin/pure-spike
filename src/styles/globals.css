@@ -18,6 +18,7 @@
   --color-error: #f87171;
 
   /* Spacing - 8-point grid system */
+  --spacing-0: 0;
   --spacing-1: 4px;     /* xs */
   --spacing-2: 8px;     /* sm */
   --spacing-3: 12px;
@@ -30,6 +31,7 @@
   --spacing-16: 64px;
 
   /* Radius */
+  --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;

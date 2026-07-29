@@ -108,3 +108,32 @@ The main content area now has a proper visual Generator panel. Frontend shell st
   - Added to `HomePage`
 
 The complete page shell is now in place: Navbar → Hero → Generator Panel → Explanatory Sections → Footer.
+
+---
+
+### Completed (2026-07-29)
+
+- **Frontend Shell Assembly & Visual Polish** (Issue #17 + follow-up polish)
+  - Created `src/layouts/MainLayout.tsx` with sticky Navbar, `<Outlet />`, and Footer
+  - Refactored `HomePage` to only compose page content (Hero → GeneratorPanel → ExplanatorySections)
+  - Nested routing in `App.tsx` (`MainLayout` wraps `/`)
+  - Removed obsolete playground code and unused “Generator” nav link
+  - Responsive polish aligned to a 767px breakpoint (Hero + cards left-align / stack on mobile)
+  - Design system cleanup:
+    - Shared spacing / radius / font-size tokens (no theme-dependent size shifts)
+    - Accent color `#2dd4bf` (teal) for dark + light
+    - `Button` supports rest props + variants (`primary` / `secondary` / `ghost`)
+    - `tokens.ts` synced with `globals.css`
+  - Visual identity:
+    - Inter font
+    - Custom logo mark (inline SVG, follows accent color)
+    - Favicon updated to project logo
+    - Navbar: “Pure Spike” bold + “Studio” light; Account button when logged in
+    - Hero CTAs: “Start generating” (scroll to `#generator`) + “Create free account”
+    - Explanatory section reduced to **3 cards** (merged intro content)
+    - Lighter cards (same background as page, thin border, tighter padding)
+  - Accessibility: heading hierarchy, `aria-label` / `aria-expanded` on controls, visible focus states
+  - Theme toggle redesigned as a simple circular icon (no layout shift on switch)
+
+**Frontend website shell is complete.**  
+The page now looks and behaves like a real product shell. Next phase: build the real Impulse Generator (parameters, waveform preview, Web Audio, WAV export).

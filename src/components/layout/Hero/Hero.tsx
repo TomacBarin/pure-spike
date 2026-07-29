@@ -5,7 +5,7 @@ function Hero() {
     <section className={styles.hero} aria-labelledby="hero-heading">
       <div className={styles.container}>
         <h1 id="hero-heading" className={styles.headline}>
-          Generate pristine impulse responses for your DAW
+          Generate pure, pristine impulse responses for sound design
         </h1>
 
         <p className={styles.subheadline}>

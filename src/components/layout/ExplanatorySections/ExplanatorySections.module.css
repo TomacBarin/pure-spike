@@ -48,3 +48,25 @@
     max-width: none;
   }
 }
+
+.steps,
+.list {
+  margin: 0;
+  padding-left: 1.1rem;   /* lagom plats för siffror/punkter */
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.steps li,
+.list li {
+  margin-bottom: var(--spacing-2);
+}
+
+.steps li:last-child,
+.list li:last-child {
+  margin-bottom: 0;
+}
+
+.list strong {
+  color: var(--color-text-primary);
+}

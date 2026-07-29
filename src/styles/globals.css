@@ -50,20 +50,20 @@
   --font-size-8xl: 64px;   
 }
 
-/* Light theme */
+
 /* Light theme */
 [data-theme="light"] {
   /* Colors only */
-  --color-bg-primary: #f8f9fa;
+  --color-bg-primary: #E6E6E6;
   --color-bg-secondary: #e9ecef;
   --color-bg-elevated: #ffffff;
 
-  --color-text-primary: #212529;
+  --color-text-primary: #4C4C4C;
   --color-text-secondary: #495057;
   --color-text-muted: #6c757d;
 
-  --color-accent: #0d9488;
-  --color-border: #dee2e6;
+  --color-accent: #F72585;
+  --color-border: #CBCBCB;
   --color-success: #198754;
   --color-error: #dc3545;
 }

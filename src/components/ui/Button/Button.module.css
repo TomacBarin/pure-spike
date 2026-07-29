@@ -2,11 +2,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-2);           /* 8px */
+  gap: var(--spacing-2);           
   font-family: inherit;
   font-weight: 500;
   border: none;
-  border-radius: var(--radius-md); /* 10px */
+  border-radius: var(--radius-sm); 
   cursor: pointer;
   transition: all 0.15s ease;
   user-select: none;
@@ -21,8 +21,8 @@
 /* === VARIANTS === */
 
 .primary {
-  background: #2DD4BF;
-  color: #0a0a0a;                    
+  background: var(--color-accent);
+  color: #0a0a0a;
   border: none;
 }
 

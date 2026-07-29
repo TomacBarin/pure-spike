@@ -63,29 +63,16 @@
   gap: var(--spacing-0);   
 }
 
+
 .authButtons {
   display: flex;
   gap: var(--spacing-2);
 }
 
-.avatarContainer {
+.accountMenu {
   position: relative;
 }
 
-.avatarButton {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: var(--spacing-2);
-  border-radius: var(--radius-md);
-  color: var(--color-text-primary);   
-  transition: background-color 0.15s ease;
-}
-
-.avatarButton:hover {
-  background-color: var(--color-bg-secondary);
-}
 
 .dropdown {
   position: absolute;

@@ -28,6 +28,13 @@
   margin-right: auto;
 }
 
+.cta {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-8);
+}
+
 
 /* === Responsive === */
 @media (max-width: 767px) {
@@ -52,4 +59,9 @@
     margin-left: 0;
     margin-right: 0;
   }
+
+  .cta {
+  justify-content: flex-start;   
 }
+}
+

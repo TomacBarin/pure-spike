@@ -36,7 +36,13 @@ export function useImpulseGenerator(): UseImpulseGeneratorReturn {
   // ----------------------------------------------------------
   // Core generation
   // ----------------------------------------------------------
+  
   const runGeneration = useCallback((params: ImpulseParams): GeneratedImpulse => {
+    const estimatedSamples = params.sampleRate * params.duration * (params.channels === 'stereo' ? 2 : 1);
+    if (estimatedSamples > 1_000_000) {
+      console.warn('Large impulse – generation may take a moment');
+    }
+
     if (params.impulseType === 'pure') {
       return generatePureSpike(params);
     }

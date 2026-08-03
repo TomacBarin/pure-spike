@@ -85,11 +85,22 @@ export function generatorReducer(
         params: createParams(state.params, { amplitude: action.amplitude }),
       };
 
-    case 'SET_CHANNELS':
+    case 'SET_CHANNELS': {
+      const nextChannels = action.channels;
+      const updates: Partial<ImpulseParams> = {
+        channels: nextChannels,
+      };
+
+      // When switching to mono, reset balance to center
+      if (nextChannels === 'mono') {
+        updates.balance = 0;
+      }
+
       return {
         ...state,
-        params: createParams(state.params, { channels: action.channels }),
+        params: createParams(state.params, updates),
       };
+    }
 
     case 'SET_BALANCE':
       return {

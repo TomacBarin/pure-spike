@@ -29,10 +29,27 @@
   cursor: pointer;
 }
 
+.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.disabled .slider {
+  cursor: not-allowed;
+}
+
 .slider::-webkit-slider-runnable-track {
-  background: var(--color-bg-secondary);
+  background: var(--color-border);
   height: 6px;
   border-radius: var(--radius-sm);
+}
+
+/* Firefox */
+.slider::-moz-range-track {
+  background: var(--color-border);
+  height: 6px;
+  border-radius: var(--radius-sm);
+  border: none;
 }
 
 .slider::-webkit-slider-thumb {

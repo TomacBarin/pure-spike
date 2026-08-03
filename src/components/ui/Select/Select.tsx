@@ -21,7 +21,7 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
   label,
   options,
-  placeholder = 'Välj...',
+  placeholder = 'Choose...',
   disabled = false,
   className,
 }) => {

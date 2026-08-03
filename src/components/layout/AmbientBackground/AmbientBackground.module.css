@@ -1,0 +1,49 @@
+.root {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.spotlight {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-accent) 35%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent) 12%, transparent) 30%,
+    transparent 70%
+  );
+  filter: blur(45px);
+  mix-blend-mode: soft-light;
+  will-change: transform;
+}
+
+:global([data-theme='dark']) .spotlight {
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 30%,
+    transparent 70%
+  );
+  filter: blur(50px);
+}
+
+:global([data-theme='light']) .spotlight {
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-accent) 28%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent) 10%, transparent) 30%,
+    transparent 70%
+  );
+  filter: blur(45px);
+}

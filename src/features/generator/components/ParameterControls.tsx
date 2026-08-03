@@ -33,6 +33,7 @@ export function ParameterControls({ params, dispatch }: Props) {
             max={CONSTRAINTS.duration.max}
             step={0.01}
             onChange={(v) => dispatch({ type: 'SET_DURATION', duration: v })}
+            defaultValue={params.impulseType === 'pure' ? 1.5 : 0.1}
           />
         </div>
 
@@ -46,6 +47,7 @@ export function ParameterControls({ params, dispatch }: Props) {
             max={CONSTRAINTS.amplitude.max}
             step={0.01}
             onChange={(v) => dispatch({ type: 'SET_AMPLITUDE', amplitude: v })}
+            defaultValue={1.0}
           />
 
           <Select
@@ -63,6 +65,7 @@ export function ParameterControls({ params, dispatch }: Props) {
             step={0.01}
             onChange={(v) => dispatch({ type: 'SET_BALANCE', balance: v })}
             disabled={!isStereo}
+            defaultValue={0}
           />
 
           {!isStereo && (
@@ -83,6 +86,7 @@ export function ParameterControls({ params, dispatch }: Props) {
             max={params.duration}
             step={0.001}
             onChange={(v) => dispatch({ type: 'SET_FADE_IN', fadeIn: v })}
+            defaultValue={params.impulseType === 'pure' ? 0 : 0.005}
           />
           <Slider
             label="Fade Out (s)"
@@ -91,6 +95,7 @@ export function ParameterControls({ params, dispatch }: Props) {
             max={params.duration}
             step={0.001}
             onChange={(v) => dispatch({ type: 'SET_FADE_OUT', fadeOut: v })}
+            defaultValue={params.impulseType === 'pure' ? 0 : 0.02}
           />
         </div>
       </div>

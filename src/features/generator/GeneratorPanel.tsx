@@ -5,6 +5,7 @@ import { ParameterControls } from './components/ParameterControls';
 import { ActionBar } from './components/ActionBar';
 import { createInitialState, generatorReducer } from './state';
 import styles from './GeneratorPanel.module.css';
+import { WaveformCanvas } from './components/WaveformCanvas';
 
 function GeneratorPanel() {
   const [state, dispatch] = useReducer(generatorReducer, undefined, createInitialState);
@@ -37,10 +38,9 @@ function GeneratorPanel() {
             {/* Live Preview toggle will be added */}
           </div>
 
-          {/* Waveform placeholder */}
-          <div className={styles.waveformArea}>
-            Waveform preview will appear here
-          </div>
+          
+        {/* Waveform */}
+          <WaveformCanvas impulse={state.generated} />
 
           {/* Parameters */}
           <ParameterControls params={state.params} dispatch={dispatch} />

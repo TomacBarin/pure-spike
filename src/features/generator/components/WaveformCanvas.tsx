@@ -36,7 +36,8 @@ export function WaveformCanvas({ impulse }: Props) {
           impulse.samples,
           impulse.numberOfChannels,
           rect.width,
-          rect.height
+          rect.height,
+          '#0a0a0a'
         );
       } else {
         // Empty state – just clear

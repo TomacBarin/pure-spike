@@ -9,6 +9,7 @@ export interface SliderProps {
     max: number;
     step?: number;
     className?: string;
+    disabled?: boolean;
 }
 
 export const Slider: React.FC<SliderProps> = ({
@@ -19,6 +20,7 @@ export const Slider: React.FC<SliderProps> = ({
     max,
     step = 0.1,
     className,
+    disabled = false,
 }) => {
     const id = React.useId();
 
@@ -45,6 +47,7 @@ export const Slider: React.FC<SliderProps> = ({
                 step={step}
                 value={value}
                 onChange={handleChange}
+                disabled={disabled}
                 className={`${styles.slider} ${className || ""}`}
             />
         </div>

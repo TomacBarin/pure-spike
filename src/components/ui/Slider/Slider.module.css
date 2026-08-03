@@ -29,6 +29,15 @@
   cursor: pointer;
 }
 
+.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.disabled .slider {
+  cursor: not-allowed;
+}
+
 .slider::-webkit-slider-runnable-track {
   background: var(--color-bg-secondary);
   height: 6px;

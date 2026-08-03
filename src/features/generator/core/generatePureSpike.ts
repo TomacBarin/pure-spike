@@ -1,5 +1,6 @@
 import type { ImpulseParams, GeneratedImpulse } from './types';
 import { clampParams } from './defaults';
+import { applyEnvelope } from './applyEnvelope';
 
 /**
  * Generates a pure single-sample impulse (Pure Spike).
@@ -38,10 +39,12 @@ export function generatePureSpike(params: ImpulseParams): GeneratedImpulse {
 
   // Rest of the buffer is already 0 (Float32Array is zero-filled)
 
-  return {
+  const impulse: GeneratedImpulse = {
     samples,
     sampleRate,
     numberOfChannels,
-    duration, // the clamped duration
+    duration,
   };
+
+  return applyEnvelope(impulse, safe.fadeIn, safe.fadeOut);
 }

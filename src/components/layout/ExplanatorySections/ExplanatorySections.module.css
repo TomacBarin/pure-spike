@@ -54,33 +54,6 @@
   outline-offset: 2px;
 }
 
-.nextButton {
-  flex-shrink: 0;
-  width: auto;
-  height: auto;
-  padding: 0 var(--spacing-1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: none;                    
-  border-radius: 0;
-  color: var(--color-text-secondary);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: color 0.15s ease;
-}
-
-.nextButton:hover {
-  color: var(--color-accent);
-}
-
-.nextButton:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
 /* ----- Collapsible body ----- */
 .body {
   display: grid;
@@ -131,20 +104,42 @@
   color: var(--color-text-primary);
 }
 
-/* ----- Dots ----- */
+/* ----- Controls (arrows + dots) ----- */
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+}
+
+.arrowButton {
+  background: none;
+  border: none;
+  padding: 0 var(--spacing-1);
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.arrowButton:hover {
+  color: var(--color-accent);
+}
+
+.arrowButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 .dots {
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: var(--spacing-2);
-  
 }
 
 .dot {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-2);
-  margin-top: var(--spacing-6);   
-  padding: 0;                     
   width: 6px;
   height: 6px;
   padding: 0;

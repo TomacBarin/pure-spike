@@ -56,6 +56,10 @@ function ExplanatorySections() {
     setIndex((prev) => (prev + 1) % SLIDES.length);
   };
 
+  const goPrev = () => {
+    setIndex((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+  };
+
   const goTo = (i: number) => {
     setIndex(i);
   };
@@ -73,15 +77,6 @@ function ExplanatorySections() {
             >
               {current.title}
             </button>
-
-            <button
-              type="button"
-              className={styles.nextButton}
-              onClick={goNext}
-              aria-label="Next topic"
-            >
-              ›
-            </button>
           </div>
 
           <div className={`${styles.body} ${isOpen ? styles.open : ''}`}>
@@ -89,18 +84,38 @@ function ExplanatorySections() {
           </div>
         </article>
 
-        <div className={styles.dots} role="tablist" aria-label="Topics">
-          {SLIDES.map((slide, i) => (
-            <button
-              key={slide.id}
-              type="button"
-              role="tab"
-              aria-selected={i === index}
-              aria-label={slide.title}
-              className={`${styles.dot} ${i === index ? styles.dotActive : ''}`}
-              onClick={() => goTo(i)}
-            />
-          ))}
+        <div className={styles.controls}>
+          <button
+            type="button"
+            className={styles.arrowButton}
+            onClick={goPrev}
+            aria-label="Previous topic"
+          >
+            ‹
+          </button>
+
+          <div className={styles.dots} role="tablist" aria-label="Topics">
+            {SLIDES.map((slide, i) => (
+              <button
+                key={slide.id}
+                type="button"
+                role="tab"
+                aria-selected={i === index}
+                aria-label={slide.title}
+                className={`${styles.dot} ${i === index ? styles.dotActive : ''}`}
+                onClick={() => goTo(i)}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className={styles.arrowButton}
+            onClick={goNext}
+            aria-label="Next topic"
+          >
+            ›
+          </button>
         </div>
       </div>
     </section>

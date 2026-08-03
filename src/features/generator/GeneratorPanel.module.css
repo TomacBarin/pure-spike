@@ -100,7 +100,7 @@
 
 
 /* Responsive */
-@media (max-width: 700px) {
+@media (max-width: 767px) {
   .paramsGrid {
     grid-template-columns: 1fr;
   }

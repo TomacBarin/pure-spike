@@ -8,45 +8,19 @@
   padding: 0 var(--spacing-6);
 }
 
-/* Center the Learn more / Learn less button */
-.toggleWrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: var(--spacing-6);
-}
-
-/* ----- Smooth collapse using CSS grid ----- */
-.collapse {
-  display: grid;
-  grid-template-rows: 0fr;          /* closed */
-  opacity: 0;
-  transition:
-    grid-template-rows 0.35s ease,
-    opacity 0.3s ease;
-}
-
-.collapse.open {
-  grid-template-rows: 1fr;          /* open */
-  opacity: 1;
-}
-
-.collapseInner {
-  overflow: hidden;
-  min-height: 0;
-}
-
-/* Cards grid */
 .grid {
+  align-items: start;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--spacing-6);
   max-width: 900px;
   margin: 0 auto;
-  padding-top: var(--spacing-2);
+  justify-content: center;
 
+  /* Room for 8px offset shadow */
+  padding-left: 12px;
   padding-right: 12px;
   padding-bottom: 12px;
-  justify-content: center
 }
 
 @media (min-width: 768px) {
@@ -55,21 +29,76 @@
   }
 }
 
-/* Same hard teal offset shadow as the generator */
+/* ----- Card shell (same look as generator) ----- */
 .infoCard {
-  border: none !important;
   background-color: var(--color-bg-primary);
-  box-shadow: 6px 6px 0 0 var(--color-accent);
   border-radius: var(--radius-lg);
+  box-shadow: 2px 2px 0 0 var(--color-accent);
+  overflow: hidden;
 }
 
-/* Existing list styles */
+/* ----- Clickable header ----- */
+.cardHeader {
+  width: 100%;
+  display: block;
+  background: none;
+  border: none;
+  padding: var(--spacing-4) var(--spacing-5);
+  text-align: left;
+  font-family: inherit;
+  font-size: var(--font-size-lg);     
+  font-weight: 600;
+  color: var(--color-accent);         
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.cardHeader:hover {
+  color: var(--color-text-primary);   
+}
+
+.cardHeader[aria-expanded="true"] {
+  color: var(--color-text-primary);   
+}
+
+.cardHeader:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+/* ----- Collapsible body ----- */
+.cardBody {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.cardBody.open {
+  grid-template-rows: 1fr;
+}
+
+.cardBodyInner {
+  overflow: hidden;
+  min-height: 0;
+  padding: 0 var(--spacing-5);        
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  font-size: var(--font-size-sm);
+  visibility: hidden;                 
+}
+
+.cardBody.open .cardBodyInner {
+  visibility: visible;
+  padding-bottom: var(--spacing-4);   
+}
+
+.cardBodyInner p {
+  margin: 0;
+}
+
 .steps,
 .list {
   margin: 0;
   padding-left: 1.1rem;
-  color: var(--color-text-secondary);
-  line-height: 1.6;
 }
 
 .steps li,
@@ -86,7 +115,7 @@
   color: var(--color-text-primary);
 }
 
-/* Mobile */
+/* ----- Mobile ----- */
 @media (max-width: 767px) {
   .container {
     padding: 0 var(--spacing-4);
@@ -94,6 +123,5 @@
 
   .grid {
     max-width: none;
-    
   }
 }

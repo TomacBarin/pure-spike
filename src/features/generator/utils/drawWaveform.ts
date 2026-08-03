@@ -48,7 +48,7 @@ export function drawWaveform(
   for (let x = 0; x < width; x++) {
     const frameIndex = Math.min(frameCount - 1, Math.floor((x / width) * frameCount));
 
-    // Take the first channel (or average for stereo if we want later)
+    // Take the first channel (or average for stereo)
     const sampleIndex = frameIndex * numberOfChannels;
     const value = samples[sampleIndex]; // -1 … 1
 

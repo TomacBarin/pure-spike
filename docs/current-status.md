@@ -137,3 +137,43 @@ The complete page shell is now in place: Navbar → Hero → Generator Panel →
 
 **Frontend website shell is complete.**  
 The page now looks and behaves like a real product shell. Next phase: build the real Impulse Generator (parameters, waveform preview, Web Audio, WAV export).
+
+---
+
+## Phase 2: Impulse Generator + Waveform Visualization
+
+### Completed (2026-08-03)
+
+- **Core generation engine** (Issues #37–#40)
+  - Pure, platform-agnostic core under `src/features/generator/core/`
+  - Types, defaults and clamping helpers (`types.ts`, `defaults.ts`)
+  - `generatePureSpike` – single-sample impulse matching original PureIR behaviour
+  - `generateNoiseBurst` + shared `applyEnvelope` (linear fade-in/out)
+  - 32-bit float WAV encoder + download helper + sensible filenames
+  - Full mono/stereo + balance support
+
+- **State & orchestration** (Issues #41, #44)
+  - `generatorReducer` with discriminated unions
+  - `useImpulseGenerator` hook – state, generation, live preview (debounced), download
+  - Manual “Generate Preview” + optional Live Preview mode
+
+- **Generator UI** (Issues #42–#43, #45)
+  - Parameter controls (Sample Rate, Duration, Amplitude, Channels, Balance, Fades)
+  - Impulse type selector (Pure Spike / Noise Burst)
+  - Waveform canvas with high-DPI support + ResizeObserver
+  - Action bar: Reset, Generate Preview, Download WAV
+  - Cmd/Ctrl + click on sliders resets to default
+  - Balance disabled + helper text in mono mode
+  - Responsive layout (767px breakpoint, aligned with the rest of the site)
+
+- **UX & visual polish**
+  - Hard offset accent shadow on generator + about card
+  - Theme-aware accent (teal in dark, pink in light)
+  - Collapsible about carousel (title toggle, arrows + dots under the card)
+  - Ambient cursor spotlight in `<main>` (soft-light blend, affects generator/card, not navbar/footer)
+  - Keyboard + VoiceOver support verified
+  - Edge cases tested (short/long duration, polarity, stereo extremes, type switch, reset)
+
+**Phase 2 is complete.**  
+Guests can configure parameters, preview the waveform and download valid 32-bit float WAV files entirely client-side.  
+Next phase: Authentication + Preset Management (backend, JWT, save/load presets).

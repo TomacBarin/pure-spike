@@ -14,13 +14,10 @@ function GeneratorPanel() {
     <section
       id="generator"
       className={styles.section}
-      aria-labelledby="generator-heading"
+      aria-labelledby="Impulse Generator"
     >
       <div className={styles.container}>
         <Card
-          title="Impulse Generator"
-          titleAs="h2"
-          titleId="generator-heading"
           padding="lg"
           className={styles.panel}
         >

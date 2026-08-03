@@ -1,103 +1,106 @@
 import { useState } from 'react';
 import styles from './ExplanatorySections.module.css';
 
-type CardId = 'what' | 'how' | 'guest';
+const SLIDES = [
+  {
+    id: 'about',
+    title: 'About Pure Spike Studio',
+    body: (
+      <p>
+        Pure Spike Studio lets you instantly generate high-quality impulse
+        responses for convolution reverbs and transient shaping. Built for
+        music producers and sound designers who want professional results
+        without complicated setup.
+      </p>
+    ),
+  },
+  {
+    id: 'how',
+    title: 'How to use it',
+    body: (
+      <ol className={styles.steps}>
+        <li>Adjust the parameters in the generator.</li>
+        <li>Preview the waveform.</li>
+        <li>Export as high-quality 32-bit WAV.</li>
+        <li>
+          (Optional) Create a free account to save your settings as presets.
+        </li>
+      </ol>
+    ),
+  },
+  {
+    id: 'guest',
+    title: 'Guest vs Account',
+    body: (
+      <ul className={styles.list}>
+        <li>
+          <strong>Guest</strong> — Full access to the generator. Generate and
+          export impulses instantly. No signup required.
+        </li>
+        <li>
+          <strong>Free Account</strong> — Save, organize, reload, and export
+          your presets. All your impulses in one place.
+        </li>
+      </ul>
+    ),
+  },
+] as const;
 
 function ExplanatorySections() {
-  const [openId, setOpenId] = useState<CardId | null>(null);
+  const [index, setIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = (id: CardId) => {
-    setOpenId((prev) => (prev === id ? null : id));
+  const current = SLIDES[index];
+
+  const goNext = () => {
+    setIndex((prev) => (prev + 1) % SLIDES.length);
+  };
+
+  const goTo = (i: number) => {
+    setIndex(i);
   };
 
   return (
-    <section
-      className={styles.section}
-      aria-label="About Pure Spike Studio"
-    >
+    <section className={styles.section} aria-label="About Pure Spike Studio">
       <div className={styles.container}>
-        <div className={styles.grid}>
-          {/* Card 1 */}
-          <article className={styles.infoCard}>
+        <article className={styles.card}>
+          <div className={styles.header}>
             <button
               type="button"
-              className={styles.cardHeader}
-              onClick={() => toggle('what')}
-              aria-expanded={openId === 'what'}
+              className={styles.titleButton}
+              onClick={() => setIsOpen((prev) => !prev)}
+              aria-expanded={isOpen}
             >
-              Pure Spike Studio
+              {current.title}
             </button>
 
-            <div
-              className={`${styles.cardBody} ${openId === 'what' ? styles.open : ''}`}
-            >
-              <div className={styles.cardBodyInner}>
-                <p>
-                  Pure Spike Studio lets you instantly generate high-quality
-                  impulse responses for convolution reverbs and transient
-                  shaping. Built for music producers and sound designers who
-                  want professional results without complicated setup.
-                </p>
-              </div>
-            </div>
-          </article>
-
-          {/* Card 2 */}
-          <article className={styles.infoCard}>
             <button
               type="button"
-              className={styles.cardHeader}
-              onClick={() => toggle('how')}
-              aria-expanded={openId === 'how'}
+              className={styles.nextButton}
+              onClick={goNext}
+              aria-label="Next topic"
             >
-              How to use it
+              ›
             </button>
+          </div>
 
-            <div
-              className={`${styles.cardBody} ${openId === 'how' ? styles.open : ''}`}
-            >
-              <div className={styles.cardBodyInner}>
-                <ol className={styles.steps}>
-                  <li>Adjust the parameters in the generator.</li>
-                  <li>Preview the waveform.</li>
-                  <li>Export as high-quality 32-bit WAV.</li>
-                  <li>
-                    (Optional) Create a free account to save your settings as
-                    presets.
-                  </li>
-                </ol>
-              </div>
-            </div>
-          </article>
+          <div className={`${styles.body} ${isOpen ? styles.open : ''}`}>
+            <div className={styles.bodyInner}>{current.body}</div>
+          </div>
+        </article>
 
-          {/* Card 3 */}
-          <article className={styles.infoCard}>
+        <div className={styles.dots} role="tablist" aria-label="Topics">
+          {SLIDES.map((slide, i) => (
             <button
+              key={slide.id}
               type="button"
-              className={styles.cardHeader}
-              onClick={() => toggle('guest')}
-              aria-expanded={openId === 'guest'}
-            >
-              Guest vs Account
-            </button>
-
-            <div
-              className={`${styles.cardBody} ${openId === 'guest' ? styles.open : ''}`}
-            >
-              <div className={styles.cardBodyInner}>
-                <ul className={styles.list}>
-                  <li>
-                    <strong>Guest</strong> — Full access to the generator.
-                    Generate and export impulses instantly. No signup required.
-                  </li>
-                  <li>
-                    <strong>Free Account</strong> — Save, organize, reload, and
-                    export your presets. All your impulses in one place.
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </article>
+              role="tab"
+              aria-selected={i === index}
+              aria-label={slide.title}
+              className={`${styles.dot} ${i === index ? styles.dotActive : ''}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
         </div>
       </div>
     </section>

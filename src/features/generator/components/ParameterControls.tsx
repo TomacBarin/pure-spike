@@ -1,9 +1,9 @@
 import { Select } from '../../../components/ui/Select/Select';
 import { Slider } from '../../../components/ui/Slider/Slider';
-import { Input } from '../../../components/ui/Input/Input';
 import type { ImpulseParams } from '../core/types';
 import { SAMPLE_RATE_OPTIONS, CHANNELS_OPTIONS, CONSTRAINTS } from '../core/types';
 import type { GeneratorAction } from '../state';
+import styles from '../GeneratorPanel.module.css';
 
 interface Props {
   params: ImpulseParams;
@@ -11,14 +11,11 @@ interface Props {
 }
 
 export function ParameterControls({ params, dispatch }: Props) {
-  const isStereo = params.channels === 'stereo';
-
   return (
     <>
-      <div className="paramsGrid"> 
-        {/* Time & Format */}
-        <div className="paramGroup">
-          <h3 className="paramGroupTitle">Time & Format</h3>
+      <div className={styles.paramsGrid}>
+        <div className={styles.paramGroup}>
+          <h3 className={styles.paramGroupTitle}>Time & Format</h3>
 
           <Select
             label="Sample Rate"
@@ -37,9 +34,8 @@ export function ParameterControls({ params, dispatch }: Props) {
           />
         </div>
 
-        {/* Level & Stereo */}
-        <div className="paramGroup">
-          <h3 className="paramGroupTitle">Level & Stereo</h3>
+        <div className={styles.paramGroup}>
+          <h3 className={styles.paramGroupTitle}>Level & Stereo</h3>
 
           <Slider
             label="Amplitude"
@@ -64,14 +60,12 @@ export function ParameterControls({ params, dispatch }: Props) {
             max={CONSTRAINTS.balance.max}
             step={0.01}
             onChange={(v) => dispatch({ type: 'SET_BALANCE', balance: v })}
-            // Notice: disabled={!isStereo} can be added
           />
         </div>
       </div>
 
-      {/* Envelope – full width */}
-      <div className="envelopeGroup">
-        <h3 className="paramGroupTitle">Envelope</h3>
+      <div className={styles.envelopeGroup}>
+        <h3 className={styles.paramGroupTitle}>Envelope</h3>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
           <Slider
             label="Fade In (s)"

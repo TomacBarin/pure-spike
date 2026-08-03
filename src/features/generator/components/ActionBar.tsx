@@ -1,4 +1,5 @@
 import { Button } from '../../../components/ui/Button/Button';
+import styles from '../GeneratorPanel.module.css';
 
 interface Props {
   onReset: () => void;
@@ -16,12 +17,12 @@ export function ActionBar({
   isGenerating = false,
 }: Props) {
   return (
-    <div className="actionBar"> 
+    <div className={styles.actionBar}>
       <Button variant="ghost" size="md" onClick={onReset}>
         Reset to Defaults
       </Button>
 
-      <div style={{ display: 'flex', gap: '12px' }}>
+      <div className={styles.actionButtons}>
         <Button variant="secondary" size="md" onClick={onGenerate} disabled={isGenerating}>
           {isGenerating ? 'Generating…' : 'Generate Preview'}
         </Button>

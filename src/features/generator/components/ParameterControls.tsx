@@ -11,6 +11,8 @@ interface Props {
 }
 
 export function ParameterControls({ params, dispatch }: Props) {
+  const isStereo = params.channels === 'stereo';
+
   return (
     <>
       <div className={styles.paramsGrid}>
@@ -60,7 +62,14 @@ export function ParameterControls({ params, dispatch }: Props) {
             max={CONSTRAINTS.balance.max}
             step={0.01}
             onChange={(v) => dispatch({ type: 'SET_BALANCE', balance: v })}
+            disabled={!isStereo}
           />
+
+          {!isStereo && (
+            <p style={{ fontSize: '13px', color: 'var(--color-text-muted)', margin: 0 }}>
+              Balance is only available in stereo mode.
+            </p>
+          )}
         </div>
       </div>
 

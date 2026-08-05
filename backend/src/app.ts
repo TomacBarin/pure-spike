@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import { env } from './config/env.js';
 import { errorMiddleware } from './middleware/error.middleware.js';
 import { asyncHandler } from './utils/asyncHandler.js';
+import authRoutes from './routes/auth.routes.js';
 
 const app = express();
 
@@ -13,13 +14,13 @@ app.use(helmet());
 app.use(
   cors({
     origin: env.FRONTEND_ORIGIN,
-    credentials: true, 
+    credentials: true,
   })
 );
 app.use(express.json());
 app.use(cookieParser());
 
-// Health check (includes DB-status)
+// Health check
 app.get(
   '/api/v1/health',
   asyncHandler(async (_req, res) => {
@@ -31,6 +32,9 @@ app.get(
     });
   })
 );
+
+// API routes
+app.use('/api/v1/auth', authRoutes);
 
 // 404
 app.use((_req, res) => {

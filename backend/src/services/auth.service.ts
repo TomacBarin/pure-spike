@@ -7,6 +7,7 @@ import {
   verifyRefreshToken,
 } from '../utils/tokens.js';
 import type { RegisterInput, LoginInput } from '../types/auth.schemas.js';
+import { PresetService } from './preset.service.js';
 
 const SALT_ROUNDS = 12;
 
@@ -94,5 +95,15 @@ export class AuthService {
     });
 
     return { accessToken };
+  }
+
+  static async deleteAccount(userId: string) {
+    // Ta bort alla presets först
+    await PresetService.deleteAllByUser(userId);
+
+    const user = await User.findByIdAndDelete(userId);
+    if (!user) {
+      throw new AppError(404, 'USER_NOT_FOUND', 'User not found');
+    }
   }
 }

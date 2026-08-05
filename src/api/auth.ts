@@ -63,3 +63,10 @@ export async function me(token: string): Promise<AuthUser> {
   const res = await apiClient<MeResponse>('/auth/me', { token });
   return res.data.user;
 }
+
+export async function deleteAccount(token: string): Promise<void> {
+  await apiClient('/auth/account', {
+    method: 'DELETE',
+    token,
+  });
+}

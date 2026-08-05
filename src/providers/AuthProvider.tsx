@@ -22,6 +22,7 @@ type AuthContextValue = AuthState & {
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  deleteAccount: () => Promise<void>;
   getAccessToken: () => string | null;
 };
 
@@ -86,6 +87,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  const deleteAccount = useCallback(async () => {
+    if (!accessToken) return;
+    await authApi.deleteAccount(accessToken);
+    setUser(null);
+    setAccessToken(null);
+  }, [accessToken]);
+
   const getAccessToken = useCallback(() => accessToken, [accessToken]);
 
   const value = useMemo<AuthContextValue>(
@@ -97,9 +105,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       login,
       register,
       logout,
+      deleteAccount,
       getAccessToken,
     }),
-    [user, accessToken, isLoading, login, register, logout, getAccessToken]
+    [user, accessToken, isLoading, login, register, logout, deleteAccount, getAccessToken]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

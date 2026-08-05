@@ -86,13 +86,26 @@ export class AuthController {
   }
 
   static async me(req: Request, res: Response) {
-    
     res.json({
       data: {
         user: {
           id: req.user!.userId,
           email: req.user!.email,
         },
+      },
+    });
+  }
+
+  static async deleteAccount(req: Request, res: Response) {
+    const userId = req.user!.userId;
+    await AuthService.deleteAccount(userId);
+
+    // Rensa refresh-cookien
+    clearRefreshCookie(res);
+
+    res.json({
+      data: {
+        message: 'Account deleted successfully',
       },
     });
   }

@@ -31,4 +31,10 @@ router.post(
 
 router.get('/me', requireAuth, asyncHandler(AuthController.me));
 
+router.delete(
+  '/account',
+  requireAuth,
+  asyncHandler(AuthController.deleteAccount)
+);
+
 export default router;

@@ -3,6 +3,7 @@ import { useTheme } from '../../../providers/ThemeProvider';
 import { useAuth } from '../../../providers/AuthProvider';
 import { Button } from '../../ui/Button/Button';
 import { AuthModal } from '../../../features/auth/components/AuthModal';
+import { AccountSettingsModal } from '../../../features/auth/components/AccountSettingsModal';
 import styles from './Navbar.module.css';
 
 function Navbar() {
@@ -11,6 +12,7 @@ function Navbar() {
 
   const [authMode, setAuthMode] = useState<'login' | 'register' | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showAccountSettings, setShowAccountSettings] = useState(false);
 
   const toggleDropdown = () => setShowDropdown((prev) => !prev);
 
@@ -92,8 +94,7 @@ function Navbar() {
                       type="button"
                       onClick={() => {
                         setShowDropdown(false);
-                        // Account Settings kommer i Issue #54
-                        alert('Account Settings – coming soon');
+                        setShowAccountSettings(true);
                       }}
                     >
                       Account Settings
@@ -132,6 +133,10 @@ function Navbar() {
           onClose={() => setAuthMode(null)}
           onSwitchMode={setAuthMode}
         />
+      )}
+
+      {showAccountSettings && (
+        <AccountSettingsModal onClose={() => setShowAccountSettings(false)} />
       )}
     </>
   );

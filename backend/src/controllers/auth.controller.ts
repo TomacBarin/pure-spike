@@ -9,10 +9,10 @@ const isProduction = env.NODE_ENV === 'production';
 function setRefreshCookie(res: Response, token: string) {
   res.cookie(REFRESH_COOKIE_NAME, token, {
     httpOnly: true,
-    secure: isProduction,          
+    secure: isProduction,
     sameSite: isProduction ? 'none' : 'lax',
-    maxAge: 7 * 24 * 60 * 60 * 1000, 
-    path: '/api/v1/auth',         
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    path: '/api/v1/auth',
   });
 }
 
@@ -81,6 +81,18 @@ export class AuthController {
     res.json({
       data: {
         message: 'Logged out successfully',
+      },
+    });
+  }
+
+  static async me(req: Request, res: Response) {
+    
+    res.json({
+      data: {
+        user: {
+          id: req.user!.userId,
+          email: req.user!.email,
+        },
       },
     });
   }

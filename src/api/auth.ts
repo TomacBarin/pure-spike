@@ -18,6 +18,12 @@ type RefreshResponse = {
   };
 };
 
+type MeResponse = {
+  data: {
+    user: AuthUser;
+  };
+};
+
 export async function register(
   email: string,
   password: string
@@ -51,4 +57,9 @@ export async function logout(): Promise<void> {
   await apiClient('/auth/logout', {
     method: 'POST',
   });
+}
+
+export async function me(token: string): Promise<AuthUser> {
+  const res = await apiClient<MeResponse>('/auth/me', { token });
+  return res.data.user;
 }

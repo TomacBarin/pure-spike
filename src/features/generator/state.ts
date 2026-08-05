@@ -32,7 +32,9 @@ export type GeneratorAction =
   | { type: 'RESET' }
   | { type: 'TOGGLE_LIVE_PREVIEW' }
   | { type: 'SET_GENERATED'; impulse: GeneratedImpulse | null }
-  | { type: 'SET_IS_GENERATING'; isGenerating: boolean };
+  | { type: 'SET_IS_GENERATING'; isGenerating: boolean }
+  | { type: 'LOAD_PRESET'; params: ImpulseParams };
+  
 
 // ------------------------------------------------------------
 // Initial state
@@ -140,14 +142,20 @@ export function generatorReducer(
         isGenerating: false,
       };
 
-    case 'SET_IS_GENERATING':
+        case 'SET_IS_GENERATING':
       return {
         ...state,
         isGenerating: action.isGenerating,
       };
 
+    case 'LOAD_PRESET':
+      return {
+        ...state,
+        params: createParams(action.params, {}),
+        generated: null,
+      };
+
     default: {
-      // Exhaustiveness check – TypeScript will error if we miss a case
       const _exhaustive: never = action;
       return state;
     }

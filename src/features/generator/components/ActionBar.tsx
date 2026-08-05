@@ -7,6 +7,9 @@ interface Props {
   onDownload: () => void;
   canDownload: boolean;
   isGenerating?: boolean;
+  isAuthenticated?: boolean;
+  onSavePreset?: () => void;
+  onOpenPresets?: () => void;
 }
 
 export function ActionBar({
@@ -15,12 +18,28 @@ export function ActionBar({
   onDownload,
   canDownload,
   isGenerating = false,
+  isAuthenticated = false,
+  onSavePreset,
+  onOpenPresets,
 }: Props) {
   return (
     <div className={styles.actionBar}>
-      <Button variant="ghost" size="md" onClick={onReset}>
-        Reset to Defaults
-      </Button>
+      <div className={styles.actionBarLeft}>
+        <Button variant="ghost" size="md" onClick={onReset}>
+          Reset to Defaults
+        </Button>
+
+        {isAuthenticated && (
+          <>
+            <Button variant="ghost" size="md" onClick={onSavePreset}>
+              Save Preset
+            </Button>
+            <Button variant="ghost" size="md" onClick={onOpenPresets}>
+              My Presets
+            </Button>
+          </>
+        )}
+      </div>
 
       <div className={styles.actionButtons}>
         <Button variant="secondary" size="md" onClick={onGenerate} disabled={isGenerating}>

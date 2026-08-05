@@ -7,6 +7,7 @@ import { errorMiddleware } from './middleware/error.middleware.js';
 import { asyncHandler } from './utils/asyncHandler.js';
 import { requireAuth } from './middleware/auth.middleware.js';
 import authRoutes from './routes/auth.routes.js';
+import presetRoutes from './routes/preset.routes.js';
 
 const app = express();
 
@@ -36,8 +37,9 @@ app.get(
 
 // API routes
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/presets', presetRoutes);
 
-// Temporary protected test route 
+// Temporary protected test route (kan vara kvar ett tag till)
 app.get(
   '/api/v1/me',
   requireAuth,

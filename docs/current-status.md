@@ -215,15 +215,56 @@ Next phase: Authentication + Preset Management (backend, JWT, save/load presets)
 
 ---
 
-## Next: Phase 4
+### Phase 4 – Deploy & Production Polish (2026-08-06)
 
-Focus: **deploy + production polish**
+**Goal:** Ship the MVP publicly and make it portfolio-ready.
 
-- Deploy frontend (Vercel)
-- Deploy backend (Render / Railway / Fly.io)
-- Production env, CORS, secure cookies
-- Lighthouse on production build
-- README + portfolio-ready presentation
-- Optional: further a11y and performance work
+#### Deploy
 
-See `docs/phases/phase-4-deploy-and-polish.md`.
+- **Backend** on Render (Web Service, root `backend/`)
+  - Build: `npm install --include=dev && npm run build`
+  - Env: `MONGODB_URI`, JWT secrets, `FRONTEND_ORIGIN`, `NODE_ENV=production`
+  - Live: https://pure-spike.onrender.com · Health: `/api/v1/health`
+- **Frontend** on Vercel (Vite from repo root)
+  - `VITE_API_URL` → production API base
+  - Live: https://pure-spike-m5cg.vercel.app
+- **MongoDB Atlas** – network access `0.0.0.0/0` for free-tier hosts
+- CORS + cookies: `FRONTEND_ORIGIN` = Vercel URL, `sameSite: 'none'`, `secure: true` in production
+
+#### Production verification
+
+- Guest: generate + download WAV
+- Auth: register, login, refresh after reload, logout
+- Presets: create, list, load, delete, export JSON
+- Account deletion with cascading preset cleanup
+- Mobile smoke-test OK
+- Expected 401 on `/auth/refresh` for guests (session restore attempt) — not a bug
+
+#### Polish
+
+- Frontend TypeScript build fixed for strict `tsc` (Vercel CI)
+- Heading hierarchy fixed (`h3` → `h2` in parameter groups)
+- Lighthouse on production (desktop):
+
+| Performance | Accessibility | Best Practices | SEO |
+| ----------- | ------------- | -------------- | --- |
+| 100         | 96            | 96             | 100 |
+
+- README rewritten with live demo, screenshots, stack, and local setup
+- Screenshots in `docs/screenshots/`
+
+#### Known limitations (unchanged MVP scope)
+
+- No email verification / password reset
+- No social login
+- No preset sharing
+- Render free tier cold starts (~30–60 s on first request after idle)
+- Touch targets on about-carousel arrows/dots intentionally compact
+
+---
+
+## Status
+
+**MVP is live and portfolio-ready.**
+
+Possible future work (not committed): password reset, more impulse types, automated tests (Vitest / Playwright), custom domain, CSP headers.

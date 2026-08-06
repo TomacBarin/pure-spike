@@ -157,6 +157,7 @@ export function generatorReducer(
 
     default: {
       const _exhaustive: never = action;
+      void _exhaustive;          
       return state;
     }
   }

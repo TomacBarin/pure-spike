@@ -1,17 +1,23 @@
 const API_BASE = import.meta.env.VITE_API_URL ?? '/api/v1';
 
 export class ApiError extends Error {
+  status: number;
+  code: string;
+  details?: unknown;
+
   constructor(
-    public status: number,
-    public code: string,
+    status: number,
+    code: string,
     message: string,
-    public details?: unknown
+    details?: unknown
   ) {
     super(message);
     this.name = 'ApiError';
+    this.status = status;
+    this.code = code;
+    this.details = details;
   }
 }
-
 type RequestOptions = {
   method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
   body?: unknown;

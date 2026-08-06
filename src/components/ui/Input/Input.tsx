@@ -79,13 +79,15 @@ export const Input: React.FC<InputProps> = ({
       
       <input
         id={id}
-        type="text"                    
+        type="text"
         inputMode="decimal"
         value={internalValue}
         onChange={handleChange}
         onBlur={handleBlur}
         placeholder={placeholder}
-        className={`${styles.input} ${(error || inputError) ? styles.error : ''}`}
+        disabled={disabled}
+        step={step}
+        className={`${styles.input} ${className ?? ''} ${(error || inputError) ? styles.error : ''}`}
       />
       
       {(error || inputError) && (

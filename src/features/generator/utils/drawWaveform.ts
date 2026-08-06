@@ -43,7 +43,7 @@ export function drawWaveform(
 
   // For performance we don't draw every single sample when the buffer is huge.
   // We step through the data.
-  const step = Math.max(1, Math.floor(frameCount / width));
+  
 
   for (let x = 0; x < width; x++) {
     const frameIndex = Math.min(frameCount - 1, Math.floor((x / width) * frameCount));

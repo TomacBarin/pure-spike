@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useTheme } from '../../../providers/ThemeProvider';
 import { useAuth } from '../../../providers/AuthProvider';
+import { useAuthModal } from '../../../features/auth/AuthModalContext';
 import { Button } from '../../ui/Button/Button';
-import { AuthModal } from '../../../features/auth/components/AuthModal';
 import { AccountSettingsModal } from '../../../features/auth/components/AccountSettingsModal';
 import styles from './Navbar.module.css';
 
 function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const { user, isAuthenticated, isLoading, logout } = useAuth();
+  const { openLogin, openRegister } = useAuthModal();
 
-  const [authMode, setAuthMode] = useState<'login' | 'register' | null>(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showAccountSettings, setShowAccountSettings] = useState(false);
 
@@ -107,18 +107,10 @@ function Navbar() {
               </div>
             ) : (
               <div className={styles.authButtons}>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setAuthMode('login')}
-                >
+                <Button variant="ghost" size="sm" onClick={openLogin}>
                   Log in
                 </Button>
-                <Button
-                  variant="primary"
-                  size="sm"
-                  onClick={() => setAuthMode('register')}
-                >
+                <Button variant="primary" size="sm" onClick={openRegister}>
                   Register
                 </Button>
               </div>
@@ -126,14 +118,6 @@ function Navbar() {
           </div>
         </div>
       </nav>
-
-      {authMode && (
-        <AuthModal
-          mode={authMode}
-          onClose={() => setAuthMode(null)}
-          onSwitchMode={setAuthMode}
-        />
-      )}
 
       {showAccountSettings && (
         <AccountSettingsModal onClose={() => setShowAccountSettings(false)} />

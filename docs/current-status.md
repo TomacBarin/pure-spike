@@ -177,3 +177,53 @@ The page now looks and behaves like a real product shell. Next phase: build the 
 **Phase 2 is complete.**  
 Guests can configure parameters, preview the waveform and download valid 32-bit float WAV files entirely client-side.  
 Next phase: Authentication + Preset Management (backend, JWT, save/load presets).
+
+---
+
+### Phase 3 – Authentication + Preset Management
+
+- Backend: Express + TypeScript + MongoDB Atlas
+- Auth: register, login, logout, refresh tokens (httpOnly cookies), JWT access tokens
+- Protected routes + `requireAuth` middleware
+- Preset CRUD (create, list, search, load, update, delete, export JSON)
+- Frontend: AuthProvider, API client, AuthModal, Account Settings
+- Preset UI inside Generator (Save modal + My Presets drawer)
+- Account deletion with cascading preset cleanup
+- Hero “Create free account” wired to register flow
+- Mobile polish (compact buttons, responsive Live Preview label)
+
+---
+
+## Tech stack (as built)
+
+| Layer    | Stack                                                   |
+| -------- | ------------------------------------------------------- |
+| Frontend | React 19, TypeScript, Vite, CSS Modules, React Router   |
+| Backend  | Node.js, Express, Mongoose, Zod, JWT, bcrypt            |
+| Database | MongoDB Atlas                                           |
+| Auth     | Access token (Bearer) + refresh token (httpOnly cookie) |
+
+---
+
+## Known limitations (intentional for MVP)
+
+- No email verification / password reset
+- No social login
+- No preset sharing between users
+- Lighthouse Performance on localhost is not representative of production
+- Backend and frontend run as separate processes in development
+
+---
+
+## Next: Phase 4
+
+Focus: **deploy + production polish**
+
+- Deploy frontend (Vercel)
+- Deploy backend (Render / Railway / Fly.io)
+- Production env, CORS, secure cookies
+- Lighthouse on production build
+- README + portfolio-ready presentation
+- Optional: further a11y and performance work
+
+See `docs/phases/phase-4-deploy-and-polish.md`.

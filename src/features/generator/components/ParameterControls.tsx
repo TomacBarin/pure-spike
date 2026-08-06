@@ -17,7 +17,7 @@ export function ParameterControls({ params, dispatch }: Props) {
     <>
       <div className={styles.paramsGrid}>
         <div className={styles.paramGroup}>
-          <h3 className={styles.paramGroupTitle}>Time & Format</h3>
+          <h2 className={styles.paramGroupTitle}>Time & Format</h2>
 
           <Select
             label="Sample Rate"
@@ -38,7 +38,7 @@ export function ParameterControls({ params, dispatch }: Props) {
         </div>
 
         <div className={styles.paramGroup}>
-          <h3 className={styles.paramGroupTitle}>Level & Stereo</h3>
+          <h2 className={styles.paramGroupTitle}>Level & Stereo</h2>
 
           <Slider
             label="Amplitude"
@@ -77,7 +77,7 @@ export function ParameterControls({ params, dispatch }: Props) {
       </div>
 
       <div className={styles.envelopeGroup}>
-        <h3 className={styles.paramGroupTitle}>Envelope</h3>
+        <h2 className={styles.paramGroupTitle}>Envelope</h2>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
           <Slider
             label="Fade In (s)"

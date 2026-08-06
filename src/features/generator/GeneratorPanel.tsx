@@ -32,7 +32,6 @@ function GeneratorPanel() {
     <section
       id="generator"
       className={styles.section}
-      aria-labelledby="Impulse Generator"
     >
       <div className={styles.container}>
         <Card padding="lg" className={styles.panel}>

@@ -31,7 +31,7 @@ export class PresetController {
 
   static async findById(req: Request, res: Response) {
     const userId = req.user!.userId;
-    const presetId = req.params.id;
+    const presetId = req.params.id as string;
 
     const preset = await PresetService.findById(userId, presetId);
 
@@ -42,7 +42,7 @@ export class PresetController {
 
   static async update(req: Request, res: Response) {
     const userId = req.user!.userId;
-    const presetId = req.params.id;
+    const presetId = req.params.id as string;
     const input = req.body as UpdatePresetInput;
 
     const preset = await PresetService.update(userId, presetId, input);
@@ -54,7 +54,7 @@ export class PresetController {
 
   static async delete(req: Request, res: Response) {
     const userId = req.user!.userId;
-    const presetId = req.params.id;
+    const presetId = req.params.id as string;
 
     await PresetService.delete(userId, presetId);
 
@@ -63,7 +63,7 @@ export class PresetController {
 
   static async markAsUsed(req: Request, res: Response) {
     const userId = req.user!.userId;
-    const presetId = req.params.id;
+    const presetId = req.params.id as string;
 
     const preset = await PresetService.markAsUsed(userId, presetId);
 

@@ -48,7 +48,12 @@ function GeneratorPanel() {
               size="sm"
               onClick={() => dispatch({ type: 'TOGGLE_LIVE_PREVIEW' })}
             >
-              {state.livePreview ? 'Live Preview: ON' : 'Live Preview: OFF'}
+              <span className={styles.liveLabelFull}>
+                {state.livePreview ? 'Live Preview: ON' : 'Live Preview: OFF'}
+              </span>
+              <span className={styles.liveLabelShort}>
+                {state.livePreview ? 'Live: ON' : 'Live: OFF'}
+              </span>
             </Button>
           </div>
 

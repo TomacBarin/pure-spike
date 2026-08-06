@@ -7,7 +7,7 @@ function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <p className={styles.copyright}>
-          © {currentYear} Pure Spike Studio
+          © {currentYear} Tomac Barin Jansson · Pure Spike Studio
         </p>
         <p className={styles.tagline}>
           Generate pure, pristine impulse responses for sound design

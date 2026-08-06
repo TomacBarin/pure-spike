@@ -112,12 +112,16 @@
     padding: 0 var(--spacing-4);
   }
 
-  .logo {
+.logo {
     font-size: var(--font-size-lg);
   }
 
   .authButtons {
-    gap: var(--spacing-1);
+    gap: 4px;
+  }
+
+  .rightSide {
+    gap: 4px;
   }
 }
 

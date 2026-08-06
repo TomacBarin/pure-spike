@@ -1,0 +1,179 @@
+.section {
+  padding: var(--spacing-12) 0 var(--spacing-6); 
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-6);
+}
+
+.panel {
+  /* Override Card’s default 1px border */
+  border: none !important;
+  border-radius: var(--radius-lg);
+
+
+  background-color: var(--color-bg-primary);
+
+
+  box-shadow: 2px 2px 0 0 var(--color-accent);
+}
+
+
+
+
+/* Top row: type selector + live preview */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+/* Waveform area */
+
+.waveformPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a0a0a;                           
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.waveformArea {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  background: var(--color-accent);          
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-6);
+}
+
+
+
+/* Parameter groups – two columns on desktop */
+.paramsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-6);
+  margin-bottom: var(--spacing-6);
+}
+
+.paramGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.paramGroupTitle {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 var(--spacing-1);
+}
+
+/* Envelope spans full width */
+.envelopeGroup {
+  margin-bottom: var(--spacing-6);
+}
+
+/* Action buttons */
+.actionBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.actionButtons {
+  display: flex;
+  gap: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+.actionBarLeft {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.liveLabelShort {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .container {
+    padding: 0 var(--spacing-4);
+  }
+
+  .section {
+    padding: var(--spacing-8) 0 var(--spacing-4);
+  }
+
+  .paramsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .waveformArea {
+    height: 140px;
+  }
+
+  .topBar {
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .actionBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-3);
+  }
+
+  .actionBarLeft {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .actionBarLeft > * {
+    width: 100%;
+  }
+
+  .actionButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .actionButtons > * {
+    width: 100%;
+  }
+
+  .liveLabelFull {
+    display: none;
+  }
+
+  .liveLabelShort {
+    display: inline;
+  }
+}

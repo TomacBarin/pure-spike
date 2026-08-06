@@ -50,7 +50,6 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     root.setAttribute("data-theme", theme);
     localStorage.setItem(THEME_STORAGE_KEY, theme);
 
-    console.log(`Theme changed to: ${theme} | data-theme on <html>:`, root.getAttribute("data-theme"));
   }, [theme]);
 
   // Stable functions
@@ -89,3 +88,4 @@ export const useTheme = (): ThemeContextType => {
   }
   return context;
 };
+

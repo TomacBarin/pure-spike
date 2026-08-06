@@ -1,0 +1,20 @@
+import styles from "./Footer.module.css";
+
+function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.container}>
+        <p className={styles.copyright}>
+          © {currentYear} Tomac Barin Jansson · Pure Spike Studio
+        </p>
+        <p className={styles.tagline}>
+          Generate pure, pristine impulse responses for sound design
+        </p>
+      </div>
+    </footer>
+  );
+}
+
+export default Footer;

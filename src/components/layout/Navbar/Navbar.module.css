@@ -1,0 +1,139 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-bg-primary);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-3) 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;                 
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  line-height: 1.2;
+}
+
+.logo:hover {
+  color: var(--color-accent);
+}
+
+.logoText {
+  display: inline;             
+}
+
+.logoBold {
+  font-weight: 700;
+}
+
+.logoLight {
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+.logoIcon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.themeToggle {
+  color: var(--color-text-primary);   
+  padding: var(--spacing-1) var(--spacing-2);
+}
+
+.rightSide {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-0);   
+}
+
+
+.authButtons {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.accountMenu {
+  position: relative;
+}
+
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2);
+  margin-top: var(--spacing-2);
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: var(--spacing-3) var(--spacing-4);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s ease;
+}
+
+.dropdown button:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+/* === Responsive === */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--spacing-4);
+  }
+
+.logo {
+    font-size: var(--font-size-lg);
+  }
+
+  .authButtons {
+    gap: 4px;
+  }
+
+  .rightSide {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 400px) {
+  .logoText {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.15;
+  }
+
+  .logoLight {
+    margin-left: 0;
+  }
+}

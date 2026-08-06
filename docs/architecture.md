@@ -1,10 +1,10 @@
 # Architecture Document – Pure Spike Studio
 
-**Version:** 0.1  
-**Date:** 2026-07-02  
-**Status:** Draft  
+**Version:** 0.2  
+**Date:** 2026-07-15  
+**Status:** Updated  
 **Author:** Solution Architect (BMAD Team)  
-**Based on:** PRD v0.1
+**Based on:** PRD v0.1 + UI Layout Spec v1.1
 
 ---
 
@@ -91,15 +91,14 @@ src/
 
 ### 4.3 Main Screens / Views
 
-- **Generator Page** (main view)
-  - Waveform visualization (Canvas)
-  - Parameter controls
-  - Impulse type selector
-  - Generate / Download actions
-- **My Presets Page**
-  - List of saved presets with search and filtering
-  - Load / Edit / Delete / Export
-- **Account / Settings** (minimal in MVP)
+- **Main Generator View** (primary page)
+  - Minimal navbar (Logo + Generator + Theme + Avatar/Login)
+  - Hero / Intro section
+  - Central Impulse Generator panel (main focus)
+  - Explanatory sections below
+  - Preset management accessed from within Generator context (sidebar/modal)
+
+- **Account Settings** (modal)
 
 ## 5. Backend Architecture
 
@@ -231,19 +230,18 @@ All processing happens in the browser. No audio data is sent to the server.
 
 | Decision                   | Chosen Approach             | Reason                                                                  |
 | -------------------------- | --------------------------- | ----------------------------------------------------------------------- |
+| Navbar design              | Minimal (only Generator)    | Keeps focus on the tool itself, clean workflow                          |
+| Preset management          | Integrated in Generator     | Focused workflow inside the tool, fewer navigation steps                |
 | Where to generate impulses | Client-side (Web Audio API) | No server cost, instant download, aligns with "free to use" requirement |
 | Authentication             | JWT + Refresh Tokens        | Good security vs complexity balance                                     |
-| State management           | useReducer + Context        | Follows coding conventions, avoids over-engineering                     |
-| Preset storage             | MongoDB                     | Flexible schema, good for metadata                                      |
-| Waveform rendering         | HTML Canvas                 | Good performance and control                                            |
-| API style                  | REST                        | Simple and well understood                                              |
 
 ## 12. Next Steps
 
 1. Review and approve this architecture document.
-2. Break down the PRD into user stories / tasks.
-3. Begin implementation following the defined structure and conventions.
+2. Follow UI Layout Spec v1.1 for frontend implementation.
+3. Break down the PRD into tasks.
+4. Start coding.
 
 ---
 
-**End of Architecture Document v0.1**
+**End of Architecture Document v0.2**

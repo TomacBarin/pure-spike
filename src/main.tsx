@@ -1,13 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.tsx'
-import { ThemeProvider } from './providers/ThemeProvider'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
+import './index.css';
+import App from './App.tsx';
+import { ThemeProvider } from './providers/ThemeProvider';
+import { AuthProvider } from './providers/AuthProvider';
+import { AuthModalProvider } from './features/auth/AuthModalContext';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
-      <App />
+      <AuthProvider>
+        <AuthModalProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </AuthModalProvider>
+      </AuthProvider>
     </ThemeProvider>
   </StrictMode>,
-)
+);

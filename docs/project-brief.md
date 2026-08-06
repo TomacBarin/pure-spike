@@ -1,8 +1,8 @@
 # Project Brief – Pure Spike Studio
 
-**Version:** 0.1  
-**Date:** 2026-07-01  
-**Status:** Draft  
+**Version:** 0.2  
+**Date:** 2026-07-15  
+**Status:** Updated  
 **Author:** BMAD Analyst (in collaboration with Tomac Barin Jansson)  
 **Project Type:** Greenfield Fullstack
 
@@ -74,15 +74,19 @@ Registered users can:
 - View, load, and delete saved presets
 - Quickly regenerate impulses from saved presets
 
+**Note on UI**: Preset management is integrated directly into the Generator area (via sidebar or modal). There is no separate top-level "Presets" navigation item. This keeps the workflow focused on the tool.
+
 Security is a high priority. The application must follow modern authentication and data protection best practices.
 
 ### 3.5 Design & User Experience
 
-- Professional, minimalist, and clean interface (inspired by Cubase, FabFilter, Unfiltered Audio, and Blender)
+- Professional, minimalist website design inspired by the marketing websites of [FabFilter](https://fabfilter.com), [Steinberg Cubase](https://steinberg.net/cubase), and [Unfiltered Audio](https://unfilteredaudio.com). The central Impulse Generator panel will use precise, plugin-style controls (inspired by FabFilter, Brainworx and Unfiltered Audio).
 - Dark mode enabled by default
 - Subtle gray tones instead of pure black/white for a more refined look
 - High visual contrast following WCAG 2.1 AA accessibility standards
 - Clear feedback, helpful defaults, and intuitive controls
+- **Minimal navbar**: Logo + "Generator" (active) + Theme toggle + Avatar/Login
+- Explanatory sections (What it is, Who it's for, How to use, Guest vs Account) placed below the main Generator panel
 
 ---
 
@@ -132,8 +136,8 @@ These features may be considered in future iterations after the MVP is complete.
 By the end of August 2026, the following should be achieved:
 
 - A fully functional MVP where users can generate, preview, and download impulses without an account
-- Working user registration, login, and preset saving/loading functionality
-- Professional-looking, accessible, and minimalist user interface
+- Working user registration, login, and preset saving/loading functionality (integrated in Generator context)
+- Professional-looking, accessible, and minimalist user interface with minimal navbar
 - Clean, well-structured codebase that follows the defined coding conventions and quality guidelines
 - The project is suitable to be shown in a portfolio
 
@@ -156,4 +160,4 @@ By the end of August 2026, the following should be achieved:
 
 ---
 
-**End of Project Brief**
+**End of Project Brief v0.2**

@@ -77,7 +77,9 @@ function GeneratorPanel() {
       {showSaveModal && (
         <SavePresetModal
           params={state.params}
-          onSave={createPreset}
+          onSave={async (input) => {
+            await createPreset(input);
+          }}
           onClose={() => setShowSaveModal(false)}
         />
       )}
@@ -92,7 +94,9 @@ function GeneratorPanel() {
           onDelete={deletePreset}
           onExport={exportAll}
           onRefresh={(search) => fetchPresets({ search })}
-          onMarkUsed={markAsUsed}
+          onMarkUsed={async (id) => {
+            await markAsUsed(id);
+          }}
         />
       )}
     </section>

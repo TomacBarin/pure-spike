@@ -1,4 +1,4 @@
-import type { ImpulseParams, ImpulseType, SampleRate, Channels } from './types';
+import type { ImpulseParams, ImpulseType, } from './types';
 import { CONSTRAINTS } from './types';
 
 /** Default parameters for Pure Spike */

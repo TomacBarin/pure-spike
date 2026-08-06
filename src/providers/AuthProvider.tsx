@@ -9,7 +9,6 @@ import {
 } from 'react';
 import * as authApi from '../api/auth';
 import type { AuthUser } from '../api/auth';
-import { ApiError } from '../api/client';
 
 type AuthState = {
   user: AuthUser | null;

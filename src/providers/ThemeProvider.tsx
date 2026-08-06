@@ -5,7 +5,7 @@ import {
   useEffect,
   useCallback,
   useMemo,
-  ReactNode,           
+  type ReactNode,           
 } from "react";
 
 export type Theme = "light" | "dark";

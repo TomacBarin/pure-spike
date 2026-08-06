@@ -77,3 +77,21 @@
   cursor: not-allowed;
   pointer-events: none;
 }
+
+/* Compact buttons on small screens */
+@media (max-width: 767px) {
+  .sm {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .md {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .lg {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+}

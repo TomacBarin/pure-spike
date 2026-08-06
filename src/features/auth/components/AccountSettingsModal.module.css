@@ -1,0 +1,131 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  padding: 16px;
+}
+
+.modal {
+  width: 100%;
+  max-width: 440px;
+  background: var(--color-bg-elevated, #2f2f36);
+  border: 1px solid var(--color-border, #3a3a42);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary, #f0f0f5);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary, #b0b0b8);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.closeButton:hover {
+  color: var(--color-text-primary, #f0f0f5);
+  background: var(--color-bg-secondary, #25252b);
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--color-text-secondary, #b0b0b8);
+  font-weight: 500;
+}
+
+.email {
+  margin: 0;
+  font-size: 16px;
+  color: var(--color-text-primary, #f0f0f5);
+}
+
+.dangerZone {
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(248, 113, 113, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dangerTitle {
+  margin: 0;
+  font-size: 15px;
+  color: #f87171;
+  font-weight: 600;
+}
+
+.dangerText {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-secondary, #b0b0b8);
+  line-height: 1.45;
+}
+
+.label {
+  font-size: 13px;
+  color: var(--color-text-secondary, #b0b0b8);
+}
+
+.input {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border, #3a3a42);
+  background: var(--color-bg-primary, #1a1a1f);
+  color: var(--color-text-primary, #f0f0f5);
+  font-size: 15px;
+  outline: none;
+}
+
+.input:focus {
+  border-color: #f87171;
+}
+
+.error {
+  margin: 0;
+  font-size: 13px;
+  color: #f87171;
+}
+
+.deleteButton {
+  margin-top: 4px;
+  background: #dc2626 !important;
+  border-color: #dc2626 !important;
+}
+
+.deleteButton:hover:not(:disabled) {
+  background: #b91c1c !important;
+}
+
+.deleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -40,17 +40,17 @@
 @media (max-width: 767px) {
   .hero {
     padding: var(--spacing-12) 0 var(--spacing-8);
-    text-align: left;                 
+    text-align: left;
   }
 
   .container {
     padding: 0 var(--spacing-4);
-    margin: 0;                        
+    margin: 0;
     max-width: none;
   }
 
   .headline {
-    font-size: var(--font-size-3xl);  
+    font-size: var(--font-size-3xl);
     max-width: 550px;
   }
 
@@ -62,13 +62,12 @@
   }
 
   .cta {
-  justify-content: flex-start;   
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cta button:last-child {
+  display: none;
 }
-
-.cta button:last-child {
-    display: none;
 }
-
-
-}
-
